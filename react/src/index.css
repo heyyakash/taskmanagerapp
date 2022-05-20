@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base{
+  *{
+    @apply box-border
+  }
+  body{
+    @apply m-0 p-0 w-full font-roboto; 
+  }
+}
+
+@layer components{
+  .navlink{
+    @apply cursor-pointer hover:scale-[1.5] transition-all duration-200;
+  }
+  .active{
+    @apply text-primary;
+  }
+}
+
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
