@@ -21,6 +21,9 @@
   .active{
     @apply text-primary;
   }
+  .primary-button{
+    @apply h-10 px-2;
+  }
 }
 
 /* body {
