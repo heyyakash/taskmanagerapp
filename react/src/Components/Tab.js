@@ -11,7 +11,7 @@ const Tab = ({title,Sort,List}) => {
             <p className='text-gray-400 text-sm'>{Sort}</p>
         </div>
         <div>
-        {List && List.map((card)=><Card Title = {card.task} />)}
+        {List && List.map((card)=><Card Title = {card.task} key = {card._id} Id = {card._id} />)}
            
         </div>
     </div>

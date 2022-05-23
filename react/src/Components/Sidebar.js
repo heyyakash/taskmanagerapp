@@ -15,9 +15,9 @@ const Sidebar = () => {
             
             <nav className='flex text-[1rem] text-gray-400 md:gap-8 group xl:flex-col items-center justify-start my-auto'>
               <BsFillGrid1X2Fill className='active navlink' />
-              <BsGraphUp className = 'navlink' />
+              {/* <BsGraphUp className = 'navlink' /> */}
               <BsFillCalendarEventFill className = 'navlink' />
-              <BsFillChatLeftFill className = 'navlink' />
+              {/* <BsFillChatLeftFill className = 'navlink' /> */}
               <IoSettings className = 'navlink' />
             </nav>
         </div>

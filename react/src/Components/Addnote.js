@@ -2,10 +2,13 @@ import { useState } from 'react';
 import {useSetRecoilState,useRecoilValue} from 'recoil';
 import { Dialog } from '@headlessui/react';
 import { addModalState } from '../Atom/addNoteAtom';
+import { dbState } from '../Atom/dbState';
 
 export default function MyDialog() {
     const [text,setText]= useState('');
     const addVal = useRecoilValue(addModalState);
+    const change = useRecoilValue(dbState);
+    const setChange = useSetRecoilState(dbState);
     const setAddModal = useSetRecoilState(addModalState);
     let [isOpen, setIsOpen] = useState(false)
     
@@ -20,6 +23,7 @@ export default function MyDialog() {
             })
         })
         setAddModal(false);
+        setChange([...change,'add']);
     }
 
 
