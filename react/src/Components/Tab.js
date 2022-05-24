@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 
 
-const Tab = ({title,Sort,List}) => {
+const Tab = ({title,Sort,List,Type}) => {
   return (
     <div className='flex flex-grow flex-col'>
         <div className='flex px-2 mb-4 justify-between items-center w-full'>
@@ -10,7 +10,7 @@ const Tab = ({title,Sort,List}) => {
             <p className='text-gray-400 text-sm'>{Sort}</p>
         </div>
         <div>
-        {List && List.map((card)=><Card Title = {card.task} key = {card._id} Id = {card._id} />)}
+        {List && List.map((card)=><Card Title = {card.task} Type = {Type} key = {card._id} Id = {card._id} />)}
            
         </div>
     </div>

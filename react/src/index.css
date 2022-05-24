@@ -24,6 +24,9 @@
   .primary-button{
     @apply h-10 px-2;
   }
+  .access-buttons{
+    @apply p-1 bg-white rounded-[8px] text-[1.2rem] hover:text-primary  hover:bg-secondary cursor-pointer transition-all ;
+  }
 }
 
 /* body {
