@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import SearchBox from './SearchBox'
 import Tab from './Tab'
-// import { addModalState } from '../Atom/addNoteAtom'
+// import { addModalState } from '../Atom/addNoteAtom';
+import {newListState,revListState,doneListState} from '../Atom/taskList';
 import { dbState } from '../Atom/dbState';
 import { useSetRecoilState,useRecoilValue } from 'recoil'
 
 const Center = () => {
     const change = useRecoilValue(dbState);
-    const [list, setList] = useState(['']);
-    const [rev, setRev] = useState(['']);
-    const [done, setDone] = useState(['']);
+    const list = useRecoilValue(newListState);
+    const rev = useRecoilValue(revListState);
+    const done = useRecoilValue(doneListState);
+    const setList = useSetRecoilState(newListState);
+    const setRev = useSetRecoilState(revListState);
+    const setDone = useSetRecoilState(doneListState);
     useEffect(() => {
         const url = "http://localhost:5500/api/v1/tasks";
         getTask(url);

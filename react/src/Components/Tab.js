@@ -1,4 +1,3 @@
-import { list } from 'postcss';
 import React from 'react';
 import Card from './Card';
 
