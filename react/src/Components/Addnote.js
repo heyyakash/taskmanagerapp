@@ -6,6 +6,7 @@ import { dbState } from '../Atom/dbState';
 
 export default function MyDialog() {
     const [text,setText]= useState('');
+    const [note,setNote] =useState('');
     const addVal = useRecoilValue(addModalState);
     const change = useRecoilValue(dbState);
     const setChange = useSetRecoilState(dbState);
@@ -19,10 +20,12 @@ export default function MyDialog() {
             method:'POST',
             headers:{"Content-Type":"application/json",token:localStorage.getItem('token')},
             body:JSON.stringify({
-                task:text
+                task:text,
+                note
             })
         })
         setAddModal(false);
+        setText('');
         setChange([...change,'add']);
     }
 
@@ -36,7 +39,8 @@ export default function MyDialog() {
                     {/* <Dialog.Description className='mt-3 mb-2'>
                         Enter the task
                     </Dialog.Description> */}
-                    <textarea value = {text} onChange={(e)=>setText(e.target.value)} name="" id="" maxLength={80} className='w-full p-1 text-md bg-secondary rounded-[5px] outline-none h-[120px]'></textarea>
+                    <input value = {text} onChange={(e)=>setText(e.target.value)} placeholder = "Enter Title" name="" id="" maxLength={80} className='w-full p-1 text-md bg-secondary rounded-[5px] outline-none h-[30px]'></input>
+                    <textarea value = {note} onChange={(e)=>setNote(e.target.value)} name="" placeholder="Enter Note" id="" maxLength={80} className='w-full mt-2 p-1 text-md bg-secondary rounded-[5px] outline-none h-[120px]'></textarea>
                     
 
                     <button onClick = {addnote} className='px-4 py-2 rounded-[20px] text-white hover:text-primary hover:bg-white transition-all duration-150 mt-2 bg-primary'>Add note</button>

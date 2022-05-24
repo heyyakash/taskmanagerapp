@@ -5,7 +5,7 @@ import { dbState } from '../Atom/dbState';
 import { MdOutlineDone } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
 
-const Card = ({ Title, Id, Type }) => {
+const Card = ({ Title, Id, Type ,Note}) => {
   const change = useRecoilValue(dbState);
   const setChange = useSetRecoilState(dbState);
 
@@ -52,6 +52,13 @@ const Card = ({ Title, Id, Type }) => {
         <p className='font-[500] text-[1rem]'>{Title}</p>
         <GrClose className='cursor-pointer' onClick={() => delTask(Id)} />
       </div>
+      {Note && (
+        <>
+        <div className='mt-2'>
+          <p>{Note}</p>
+        </div>
+        </>
+      )}
 
       {Type !== "done" ? (<>
         <div className='mt-2 flex justify-start items-center gap-2'>

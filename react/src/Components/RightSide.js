@@ -25,13 +25,13 @@ const getuser = async (url) => {
     }
   })
   const data = await res.json();
-  setName(data.payload.firstname);
+  setName(data.payload.firstname +" "+ data.payload.lastname);
 }
   return (
     <>
-      <div className='bg-secondary md:w-[320px] px-3 md:py-0 rounded-xl'>
+      <div className='bg-secondary md:w-[320px] flex flex-col gap-5 px-3 md:py-0 rounded-xl'>
         <div className="flex justify-between w-full pl-5 items-center">
-          <h1 className='text-3xl font-[700]'>Hello {name}</h1>
+          <h1 className='text-3xl font-[500]'>Hello <br /> {name}</h1>
           <img src="https://cliply.co/wp-content/uploads/2020/10/442010362_WINKING_AVATAR_3D_400.png" alt="avatar" className='w-[100px]  scale-[1.1] h-[100px]' />
         </div>
 

@@ -6,6 +6,7 @@ const createTask = async(req,res)=>{
         const body={
             uid:req.body.uid,
             task:req.body.task,
+            note:req.body.note,
             status:req.body.status
         }
         body.user = req.user

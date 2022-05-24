@@ -3,7 +3,8 @@ const {Schema} = mongoose
 
 const taskSchema = new Schema({
     uid:{type:String, required:true},
-    task:String,
+    task:{type:String,required:true},
+    note:String,
     status:{type:String,default:"New"}
 })
 
