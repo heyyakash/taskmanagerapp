@@ -7,6 +7,7 @@ import {BsFillCalendarEventFill} from 'react-icons/bs';
 import {IoSettings} from 'react-icons/io5';
 import {MdLogout} from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -21,9 +22,9 @@ const Sidebar = () => {
             
             
             <nav className='flex text-[1rem] text-gray-400 md:gap-8 group xl:flex-col items-center justify-start md:mt-[3.6rem]'>
-              <BsFillGrid1X2Fill className='active navlink' />
+              <Link to = "/"><BsFillGrid1X2Fill className='active navlink' /></Link>
               {/* <BsGraphUp className = 'navlink' /> */}
-              <BsFillCalendarEventFill className = 'navlink' />
+              <Link to = "/cal"><BsFillCalendarEventFill className = 'navlink' /></Link>
               {/* <BsFillChatLeftFill className = 'navlink' /> */}
               <IoSettings className = 'navlink' />
             </nav>

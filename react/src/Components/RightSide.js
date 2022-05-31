@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import {newListState,doneListState} from '../Atom/taskList';
+import {newListState,doneListState,revListState} from '../Atom/taskList';
 import {dbState} from '../Atom/dbState';
 
-const RightSide = () => {
+const RightSide = ({setShowLoading}) => {
   const change = useRecoilValue(dbState);
   const [name, setName] = useState("User");
   const newList = useRecoilValue(newListState);
-  // const revList = useRecoilValue(revListState);
+  const revList = useRecoilValue(revListState);
   const doneList = useRecoilValue(doneListState);
-  const fraction = Math.round((doneList.length/(doneList.length+newList.length))*100);
+  const fraction = Math.round((doneList.length/(doneList.length+newList.length+revList.length))*100);
   
   useEffect(() => {
     const url = "http://localhost:5500/api/v1/getuser";
@@ -18,6 +18,7 @@ const RightSide = () => {
   }, [change])
 
 const getuser = async (url) => {
+  setShowLoading(true);
   const res = await fetch(url, {
     method: 'GET',
     headers: {
@@ -26,6 +27,7 @@ const getuser = async (url) => {
   })
   const data = await res.json();
   setName(data.payload.firstname +" "+ data.payload.lastname);
+  setShowLoading(false);
 }
   return (
     <>
@@ -36,8 +38,8 @@ const getuser = async (url) => {
         </div>
 
         <div className='bg-white rounded-[20px] cursor-pointer'>
-          <div className="p-2 flex px-7 py-4 justify-between items-center"><p>Total Tasks</p> <p> {newList.length + doneList.length }</p></div>
-          <div className="p-2 flex px-7 py-4 justify-between items-center"><p>Current Tasks</p> <p> {newList.length}</p></div>
+          <div className="p-2 flex px-7 py-4 justify-between items-center"><p>Total Tasks</p> <p> {newList.length + doneList.length + revList.length }</p></div>
+          <div className="p-2 flex px-7 py-4 justify-between items-center"><p>To Do</p> <p> {newList.length}</p></div>
           <div className="p-2 flex px-7 py-4 justify-between items-center"><p>Completed Tasks</p> <p> {doneList.length }</p></div>
           {/* <div className="p-2 flex px-4 py-4 items-center">Current Tasks : {newList.length}</div>
           <div className="p-2 flex px-4 py-4 items-center">Completed Tasks : { doneList.length }</div> */}

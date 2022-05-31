@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SearchBox from './SearchBox'
 import Tab from './Tab'
-// import { addModalState } from '../Atom/addNoteAtom';
 import {newListState,revListState,doneListState} from '../Atom/taskList';
 import { dbState } from '../Atom/dbState';
 import { useSetRecoilState,useRecoilValue } from 'recoil'

@@ -32,7 +32,7 @@ const Login = () => {
                 })
             const data = await res.json();
             localStorage.setItem('token',data);
-            navigate('/')
+            navigate('/');
             // if(data.success){
             //     localStorage.setItem('token',data);
             //     navigate('/');
@@ -51,12 +51,19 @@ const Login = () => {
     const [pass,setPass] = useState("");
 
     return (
-        <div className='w-[100%] h-[100vh] fixed bg-white flex justify-center items-center'>
-            <form>
-                Username: <input type="text" value = {uname} onChange = {(e)=>setUname(e.target.value)} />
-                Password: <input type="password" value = {pass} onChange = {(e)=>setPass(e.target.value)} />
-                <button onClick={handleSubmit}>Submit</button>
+        <div className='w-[100%] h-[100vh] fixed bg-primary flex justify-center items-center'>
+            <div className='bg-white drop-shadow-2xl rounded-md p-[2rem] justify-center w-[300px]'>
+            <form className='flex flex-col justify-center items-start gap-3 '>
+                Username: <input type="text" value = {uname} onChange = {(e)=>setUname(e.target.value)} className = "bg-secondary w-full h-[30px] outline-primary px-2" />
+                Password: <input type="password" value = {pass} onChange = {(e)=>setPass(e.target.value)} className = "bg-secondary w-full h-[30px] outline-primary px-2" />
+                <div className="flex gap-2 mt-2">
+                <button onClick={handleSubmit} className = "bg-primary transition-all duration-150 text-white py-1 px-2 hover:text-primary hover:bg-white cursor-pointer rounded-sm" type = "submit">Sign In</button>
+                <button onClick={()=>navigate('/create')} className = "bg-secondary transition-all duration-150 text-primary py-1 px-2 hover:text-secondary hover:bg-primary cursor-pointer rounded-sm">Sign Up</button>
+                </div>
+                
             </form>
+            </div>
+            
         </div>
     )
 }
