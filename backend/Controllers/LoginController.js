@@ -12,7 +12,7 @@ const createUser = async(req,res) =>{
     try{
         const {firstname,lastname,username,password} = req.body
         const existingUser = await Login.findOne({username})
-        if(existingUser) return res.status(401).json({msg:"User already exists"});
+        if(existingUser) return res.status(401).json({color:'red',msg:"User already exists"});
         const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(password,salt);
         
@@ -24,7 +24,7 @@ const createUser = async(req,res) =>{
                 password:hashedPass
             }
         )
-        res.status(200).json({msg:"User Created Successfully"})
+        res.status(200).json({color:"green",msg:"User Created Successfully"});
     }
     catch(err){
         res.status(500).json({err})
