@@ -32,11 +32,12 @@ const createUser = async(req,res) =>{
 }
 
 const loginUser = async(req,res)=>{
+    const success=false;
     try{
         if(req.body.password){
             const searchUser = await Login.findOne({username:req.body.username})
             if(!searchUser){
-                return res.status(403).json({msg:"user does not exist"})
+                return res.status(403).json({color:"red",msg:"user does not exist"})
             }
             const hash = searchUser.password
             const match = await bcrypt.compare(req.body.password,hash)
@@ -47,14 +48,14 @@ const loginUser = async(req,res)=>{
                 }
             }
             const authToken = jwt.sign(data,process.env.JWT_SECRET);
-            res.status(200).json(authToken); 
+            res.status(200).json({authToken,success:true}); 
             return;
         }
-        res.status(500).json({msg:"Enter Password"});
+        res.status(500).json({color:"red",msg:"Enter Password"});
         
     }
     catch(err){
-        res.status(500).json({err:"Some Error occuerd"})
+        res.status(500).json({color:"red",err:"Some Error occuerd"})
     }
 }
 
