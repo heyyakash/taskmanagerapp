@@ -43,7 +43,7 @@ export default function MyDialog() {
                     <textarea value = {note} onChange={(e)=>setNote(e.target.value)} name="" placeholder="Enter Note" id="" maxLength={80} className='w-full mt-2 p-1 text-md bg-secondary rounded-[5px] outline-none h-[120px]'></textarea>
                     
 
-                    <button onClick = {addnote} className='px-4 py-2 rounded-[20px] text-white hover:text-primary hover:bg-white transition-all duration-150 mt-2 bg-primary'>Add note</button>
+                    <button onClick = {addnote} disabled = {text.length===0?true:false} className='px-4 disabled:opacity-10 py-2 rounded-[20px] text-white hover:text-primary hover:bg-white transition-all duration-150 mt-2 bg-primary'>Add note</button>
                     {/* <button className='primary-button' onClick={() => setIsOpen(false)}>Cancel</button> */}
                 </Dialog.Panel>
             </div>

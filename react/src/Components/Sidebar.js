@@ -17,18 +17,18 @@ const Sidebar = () => {
   }
   return (
     <>
-        <div className='xl:h-full flex relative xl:flex-col  items-center pt-4 justify-start w-[80px] rounded-xl bg-[rgb(243,248,255)]'>
-            <div className='brand flex '><MdSpeakerNotes className='text-4xl text-primary cursor-pointer' /></div>
+        <div className='xl:h-full  flex relative xl:flex-col  items-center lg:pt-4 justify-between px-2 lg:px-0 lg:justify-start w-full lg:w-[80px] rounded-xl py-2 bg-secondary'>
+            <div className='flex '><MdSpeakerNotes className='text-4xl text-primary cursor-pointer' /></div>
             
             
-            <nav className='flex text-[1rem] text-gray-400 md:gap-8 group xl:flex-col items-center justify-start md:mt-[3.6rem]'>
+            <nav className='flex gap-3  text-[1rem] text-gray-400 md:gap-8 group xl:flex-col items-center justify-start md:mt-[3.6rem]'>
               <Link to = "/"><BsFillGrid1X2Fill className='active navlink' /></Link>
               {/* <BsGraphUp className = 'navlink' /> */}
               <Link to = "/cal"><BsFillCalendarEventFill className = 'navlink' /></Link>
               {/* <BsFillChatLeftFill className = 'navlink' /> */}
-              <IoSettings className = 'navlink' />
+              {/* <IoSettings className = 'navlink' /> */}
             </nav>
-            <div className='mt-auto mb-5'>
+            <div className='lg:mt-auto lg:mb-5'>
               <MdLogout onClick = {handleSignOut} className = 'navlink text-primary text-[1.5rem]' />
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import SearchBox from './SearchBox'
+import SearchBox from './SearchBox';
 import Tab from './Tab'
 import {newListState,revListState,doneListState} from '../Atom/taskList';
 import { dbState } from '../Atom/dbState';
@@ -41,7 +41,7 @@ const Center = () => {
         <>
             <div className='flex flex-[1] flex-col gap-6 px-2'>
                 <SearchBox />
-                <div className='w-full flex gap-4'>
+                <div className='w-full flex flex-col lg:flex-row gap-4'>
                     <Tab List={list} title="To Do" Sort="Date" Type="new" />
                     <Tab List={rev} title="In Review" Sort="Priority" Type ="rev" />
                     <Tab List={done} title="Done" Sort="Date" Type="done" />

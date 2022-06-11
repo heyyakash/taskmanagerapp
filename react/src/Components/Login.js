@@ -31,17 +31,14 @@ const Login = () => {
                     )
                 })
             const data = await res.json();
-            localStorage.setItem('token',data);
-            navigate('/');
-            // if(data.success){
-            //     localStorage.setItem('token',data);
-            //     navigate('/');
-            // }
-            // else{
-            //     console.log('unauthorized')
-            // }
-            
-            // console.log({uname,pass})
+            if(data.success){
+                localStorage.setItem('token',data.authToken);
+                navigate('/');
+            }
+            else{
+                console.log("Couldn't authenticate");
+                
+            }
         }
         catch(err){
             console.log(err)

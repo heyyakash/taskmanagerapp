@@ -12,6 +12,12 @@
   body{
     @apply m-0 p-0 w-full font-roboto; 
   }
+  ::-webkit-scrollbar {
+    @apply w-[5px];
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-[30px];
+  }
 }
 
 @layer components{

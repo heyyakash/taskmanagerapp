@@ -26,14 +26,14 @@ const getuser = async (url) => {
     }
   })
   const data = await res.json();
-  setName(data.payload.firstname +" "+ data.payload.lastname);
+  setName(data.payload.firstname);
   setShowLoading(false);
 }
   return (
     <>
       <div className='bg-secondary md:w-[320px] flex flex-col gap-5 px-3 md:py-0 rounded-xl'>
         <div className="flex justify-between w-full pl-5 items-center">
-          <h1 className='text-3xl font-[500]'>Hello <br /> {name}</h1>
+          <h1 className='text-3xl font-[500] capitalize'>Hello <br /> {name}</h1>
           <img src="https://cliply.co/wp-content/uploads/2020/10/442010362_WINKING_AVATAR_3D_400.png" alt="avatar" className='w-[100px]  scale-[1.1] h-[100px]' />
         </div>
 
@@ -48,7 +48,7 @@ const getuser = async (url) => {
         <div className='flex flex-col justify-center items-center mt-4 gap-2'>
           <p className='text-[0.929rem] text-gray-400'>Your Activity</p>
           <h1 className='text-4xl font-[600]'>{fraction?fraction:0}%</h1>
-          <div className='bg-gray-200 w-[150px] rounded-[20px] overflow-hidden h-2'>
+          <div className='bg-gray-200 w-[150px] mb-5 rounded-[20px] overflow-hidden h-2'>
             <div style = {{width:(fraction?fraction+'%':0),height:'100%'}} className = "bg-yellow-400"></div>
           </div>
         </div>
