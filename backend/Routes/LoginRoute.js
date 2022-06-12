@@ -3,7 +3,7 @@ const router = express.Router()
 const {createUser, loginUser,getUser} = require('../Controllers/LoginController')
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
-const fetchuser = require('../middleware/fetchuser');
+const fetchuser = require('../middleware/fetchuser.js');
 
 
 router.route('/login').post(loginUser);

@@ -1,5 +1,5 @@
 const res = require("express/lib/response")
-const Task= require('../Schema/TasksSchema')
+const Task= require('../Schema/TasksSchema.js')
 
 const createTask = async(req,res)=>{
     try{

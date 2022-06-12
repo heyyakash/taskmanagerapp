@@ -1,4 +1,4 @@
-const Login = require('../Schema/LoginSchema');
+const Login = require('../Schema/LoginSchema.js');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
