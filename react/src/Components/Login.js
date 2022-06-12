@@ -5,6 +5,7 @@ import Alert from './Alert';
 
 
 const Login = () => {
+    const [disabled,setDisabled] =useState(false);
     const [success, setSuccess] = useState(false);
     const [show, setShow] = useState(false);
     const [msg, setMsg] = useState("");
@@ -18,10 +19,9 @@ const Login = () => {
     
     const handleSubmit = async(e) => {
         e.preventDefault();
-        
-       
-        const url = `${process.env.REACT_APP_URL}/api/v1/login`;
         try{
+            const url = `${process.env.REACT_APP_URL}/api/v1/login`;
+            setDisabled(true);
             const res = await fetch(url,
                 {
                     method:'POST',
@@ -38,6 +38,7 @@ const Login = () => {
             const data = await res.json();
             if(data.success){
                 localStorage.setItem('token',data.authToken);
+                setDisabled(false);
                 navigate('/');
             }
             else{
@@ -67,7 +68,7 @@ const Login = () => {
                 Username: <input type="text" value = {uname} onChange = {(e)=>setUname(e.target.value)} className = "bg-secondary w-full h-[30px] outline-primary px-2" />
                 Password: <input type="password" value = {pass} onChange = {(e)=>setPass(e.target.value)} className = "bg-secondary w-full h-[30px] outline-primary px-2" />
                 <div className="flex gap-2 mt-2">
-                <button onClick={handleSubmit} disabled = {uname.length===0 || pass.length===0} className = "disabled:cursor-not-allowed disabled:opacity-60 bg-primary transition-all duration-150 text-white py-1 px-2 hover:text-primary hover:bg-white cursor-pointer rounded-sm" type = "submit">Sign In</button>
+                <button onClick={handleSubmit} disabled = {uname.length===0 || pass.length===0 || disabled} className = "disabled:cursor-not-allowed disabled:opacity-60 bg-primary transition-all duration-150 text-white py-1 px-2 hover:text-primary hover:bg-white cursor-pointer rounded-sm" type = "submit">Sign In</button>
                 <button onClick={()=>navigate('/create')} className = "bg-secondary transition-all duration-150 text-primary py-1 px-2 hover:text-secondary hover:bg-primary cursor-pointer rounded-sm">Sign Up</button>
                 </div>
                 

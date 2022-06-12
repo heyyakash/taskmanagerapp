@@ -15,10 +15,10 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const handleSignOut = ()=>{
     localStorage.removeItem('token');
+    navigate('/login');
     setNew([]);
     setRev([]);
     setDone([]);
-    navigate('/login');
   }
   return (
     <>
