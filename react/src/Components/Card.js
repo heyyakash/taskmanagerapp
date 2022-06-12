@@ -82,7 +82,7 @@ const Card = ({ Title, date, Id, Type, Note }) => {
 
         </>
       )}
-      <p className={`text-[.8rem] ${color!=="bg-secondary"?"text-white":"text-gray-400"} my-2 `}>Due {date}</p>
+      <p className={`text-[.8rem] ${color!=="bg-secondary"?"text-white":"text-gray-400"} my-2 `}>{Type!=="done"?`Due ${date}`:`Completed`}</p>
     </div>
 
 

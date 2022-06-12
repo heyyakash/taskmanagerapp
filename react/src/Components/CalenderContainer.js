@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { calendarFormat } from 'moment';
-// import Date from './Day';
+import { GrPrevious, GrNext } from 'react-icons/gr';
 import Day from './Day';
 
 const CalenderContainer = () => {
@@ -13,6 +13,7 @@ const CalenderContainer = () => {
   const endDay = value.clone().endOf("month").endOf("week");
 
 
+
   useEffect(() => {
     const a = [];
     const day = startDay.clone().subtract(1, "day");
@@ -22,7 +23,7 @@ const CalenderContainer = () => {
       )
     };
     setCalendar(a);
-  }, [])
+  }, [value])
 
 
   const logDate = (day) => {
@@ -35,7 +36,15 @@ const CalenderContainer = () => {
         {/* <Calendar onChange={setValue} value = {value}></Calendar> */}
         <div className='bg-white w-full flex flex-col h-full rounded-xl'>
 
-          <div className='w-full h-[30px] p-4 flex flex-col justify-center items-center'><h2 className='text-xl font-semibold'>{month}</h2></div>
+          <div className='w-full h-[30px] p-4 flex justify-between items-center '>
+            <span className='calendar-btn' onClick={() => setValue(value.clone().subtract(1, 'months'))}>
+              <GrPrevious />
+            </span>
+            <h2 className='text-xl font-semibold'>{month}</h2>
+            <span className='calendar-btn' onClick={() => setValue(value.clone().add(1, 'months'))}>
+              <GrNext />
+            </span>
+          </div>
 
           <div className='flex p-2 rounded-xl overflow-hidden'>
             <div className="day px-2 bg-secondary">Sun</div>
@@ -53,8 +62,8 @@ const CalenderContainer = () => {
 
             {calendar.map((week) => (
               week.map((day) => (
-  
-                <Day key={day.format("L").toString()} day ={day} month = {month}></Day>
+
+                <Day key={day.format("L").toString()} day={day} month={month}></Day>
               ))
             ))}
           </div>

@@ -7,9 +7,13 @@ import {BsFillCalendarEventFill} from 'react-icons/bs';
 import {IoSettings} from 'react-icons/io5';
 import {MdLogout} from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link ,useLocation} from 'react-router-dom';
+import { useState } from 'react';
 
 const Sidebar = () => {
+  const [active,setActive] = useState('active');
+  const location = useLocation();
+  
   const navigate = useNavigate();
   const handleSignOut = ()=>{
     localStorage.removeItem('token');
@@ -22,11 +26,9 @@ const Sidebar = () => {
             
             
             <nav className='flex gap-3  text-[1rem] text-gray-400 md:gap-8 group xl:flex-col items-center justify-start md:mt-[3.6rem]'>
-              <Link to = "/"><BsFillGrid1X2Fill className='active navlink' /></Link>
-              {/* <BsGraphUp className = 'navlink' /> */}
-              <Link to = "/cal"><BsFillCalendarEventFill className = 'navlink' /></Link>
-              {/* <BsFillChatLeftFill className = 'navlink' /> */}
-              {/* <IoSettings className = 'navlink' /> */}
+              <Link to = "/"><BsFillGrid1X2Fill className={`navlink ${location.pathname==="/"?"active":""}`} /></Link>
+              <Link to = "/cal"><BsFillCalendarEventFill className = {`navlink ${location.pathname==="/cal"?"active":""}`} /></Link>
+           
             </nav>
             <div className='lg:mt-auto lg:mb-5'>
               <MdLogout onClick = {handleSignOut} className = 'navlink text-primary text-[1.5rem]' />
