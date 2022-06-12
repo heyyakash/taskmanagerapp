@@ -42,8 +42,7 @@ const Card = ({ Title, date, Id, Type, Note }) => {
           status: action
         })
       })
-      const data = await res.json();
-      console.log(data);
+      await res.json();
       setChange([...change, 'update'])
     }
     catch (err) {

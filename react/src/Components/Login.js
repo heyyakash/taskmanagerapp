@@ -12,15 +12,14 @@ const Login = () => {
     useEffect(() => {
       const token = localStorage.getItem('token');
       if(token){
-          navigate('/')
+          navigate('/');
       }
     }, [])
     
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(process.env.REACT_APP_URL);
         
-        // const url = "http://localhost:5500/api/v1/login";
+       
         const url = `${process.env.REACT_APP_URL}/api/v1/login`;
         try{
             const res = await fetch(url,

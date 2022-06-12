@@ -26,10 +26,6 @@ const CalenderContainer = () => {
   }, [value])
 
 
-  const logDate = (day) => {
-    console.log(day);
-
-  }
   return (
     <>
       <div className='flex flex-[1] flex-col py-2 mt-2 lg:mt-0 lg:py-3 gap-6 bg-secondary rounded-xl px-2 lg:px-3'>
