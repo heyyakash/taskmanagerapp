@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { calendarFormat } from 'moment';
+// import Date from './Day';
+import Day from './Day';
 
 const CalenderContainer = () => {
-  const [value,setValue] = useState(moment());
-  const [calendar,setCalendar] = useState([]);
+  const [value, setValue] = useState(moment());
+  const [calendar, setCalendar] = useState([]);
 
   const month = value.clone().format("MMMM").toString();
   const startDay = value.clone().startOf("month").startOf("week");
   const endDay = value.clone().endOf("month").endOf("week");
-  
-  
+
+
   useEffect(() => {
-    const a =[];
+    const a = [];
     const day = startDay.clone().subtract(1, "day");
     while (day.isBefore(endDay, "day")) {
       a.push(
@@ -50,7 +52,10 @@ const CalenderContainer = () => {
 
 
             {calendar.map((week) => (
-              week.map((day) => (<div key={day.format("L").toString()} className='day'>{day.format("D").toString()}</div>))
+              week.map((day) => (
+  
+                <Day key={day.format("L").toString()} day ={day} month = {month}></Day>
+              ))
             ))}
           </div>
         </div>
