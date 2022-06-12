@@ -5,7 +5,7 @@ import { addModalState } from '../Atom/addNoteAtom';
 
 const SearchBox = () => {
   const setAddModal = useSetRecoilState(addModalState);
-  const addVal =useRecoilValue(addModalState)
+  const addVal =useRecoilValue(addModalState);
 
   const handleAdd = ()=>{
     if(addVal===false) setAddModal(true);
