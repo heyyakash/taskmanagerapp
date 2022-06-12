@@ -4,6 +4,7 @@ import {useSetRecoilState,useRecoilValue} from 'recoil';
 import { Dialog } from '@headlessui/react';
 import { addModalState } from '../Atom/addNoteAtom';
 import { dbState } from '../Atom/dbState';
+import moment from 'moment';
 
 
 export default function MyDialog() {
@@ -35,7 +36,7 @@ export default function MyDialog() {
         setAddModal(false)
         setText('');
         setNote('');
-        setDate();
+        setDate((new Date()).toISOString().split('T')[0]);
     }
 
     return (

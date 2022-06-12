@@ -8,7 +8,7 @@ const Day = ({ day, month }) => {
     const setAddModal = useSetRecoilState(addModalState);
     const setDate = useSetRecoilState(dateState)
     const logDate = () => {
-        if (day.isAfter(moment(), day) || day.isSame((new Date()).toISOString().split('T')[0])) {
+        if (day.isAfter(moment(), 'day') || day.isSame(moment(),'day')) {
             setDate(day.format("YYYY-MM-DD"));
             setAddModal(true);
         }
