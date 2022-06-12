@@ -28,16 +28,18 @@ export default function MyDialog() {
                 date
             })
         });
-        setAddModal(false);
+        clear();
+        setChange([...change,'add']);
+    }
+    const clear = () => {
+        setAddModal(false)
         setText('');
         setNote('');
         setDate();
-        setChange([...change,'add']);
     }
 
-
     return (
-        <Dialog open={addVal} onClose={() => setAddModal(false)}>
+        <Dialog open={addVal} onClose={() => clear()}>
             <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
             <div className="fixed inset-0 flex items-center transition-all duration-100 justify-center p-4">
                 <Dialog.Panel className="w-full border-l-2 border-2 border-primary  max-w-sm rounded-[20px] p-4 bg-white">

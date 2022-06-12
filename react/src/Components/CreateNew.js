@@ -12,7 +12,7 @@ const CreateNew = () => {
     const [msg, setMsg] = useState("");
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const url = `${process.env.REACT_APP_URL}/api/v1/createuser` || `http://localhost:5500/api/v1/createuser`;
+        const url = `${process.env.REACT_APP_URL}/api/v1/createuser`;
         try {
             const res = await fetch(url,
                 {

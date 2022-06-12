@@ -17,7 +17,7 @@ const Center = () => {
     const setDone = useSetRecoilState(doneListState);
     
     useEffect(() => {
-        const url = `${process.env.REACT_APP_URL}/api/v1/tasks` || `http://localhost:5500/api/v1/tasks`;
+        const url = `${process.env.REACT_APP_URL}/api/v1/tasks`;
         getTask(url);
         
     }, [change]);

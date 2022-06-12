@@ -21,7 +21,7 @@ const Login = () => {
         console.log(process.env.REACT_APP_URL);
         
         // const url = "http://localhost:5500/api/v1/login";
-        const url = `${process.env.REACT_APP_URL}/api/v1/login` || "http://localhost:5500/api/v1/login";
+        const url = `${process.env.REACT_APP_URL}/api/v1/login`;
         try{
             const res = await fetch(url,
                 {

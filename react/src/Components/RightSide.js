@@ -12,7 +12,7 @@ const RightSide = ({ setShowLoading }) => {
   const fraction = Math.round((doneList.length / (doneList.length + newList.length + revList.length)) * 100);
 
   useEffect(() => {
-    const url = "http://localhost:5500/api/v1/getuser";
+    const url = `${process.env.REACT_APP_URL}/api/v1/getuser`;
     
 
     const getuser = async (url) => {

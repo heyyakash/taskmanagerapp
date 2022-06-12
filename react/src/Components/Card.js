@@ -63,7 +63,7 @@ const Card = ({ Title, date, Id, Type, Note }) => {
     const res = await fetch(url, {
       method: "DELETE",
     })
-    await res.json();
+      await res.json();
     setChange([...change, 'del'])
   }
 
