@@ -31,7 +31,7 @@ export default function MyDialog() {
         setAddModal(false);
         setText('');
         setNote('');
-        setDate('');
+        setDate();
         setChange([...change,'add']);
     }
 

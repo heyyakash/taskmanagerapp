@@ -16,7 +16,7 @@
     @apply w-[5px];
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary rounded-[30px];
+    @apply bg-blue-100 rounded-[30px];
   }
 }
 
