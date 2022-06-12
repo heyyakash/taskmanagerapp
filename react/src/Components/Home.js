@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Center from './Center';
-// import Login from './Login';
 import RightSide from './RightSide';
 import Sidebar from './Sidebar';
 import Addnote from './Addnote';
@@ -8,7 +7,6 @@ import CalenderContainer from './CalenderContainer';
 import { Routes, Route } from 'react-router-dom';
 import Loading from './Loading';
 
-// import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
    
@@ -23,6 +21,7 @@ const Home = () => {
         <Routes>
         <Route path = "/" exact element ={<Center />}/>
         <Route path = "/cal" exact element ={<CalenderContainer />}/>
+
         </Routes>
           
         <RightSide setShowLoading = {setShowLoading}/>

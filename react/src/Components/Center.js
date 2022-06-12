@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import SearchBox from './SearchBox';
-import Tab from './Tab'
+import Tab from './Tab';
+
 import {newListState,revListState,doneListState} from '../Atom/taskList';
 import { dbState } from '../Atom/dbState';
-import { useSetRecoilState,useRecoilValue } from 'recoil'
+import { useSetRecoilState,useRecoilValue } from 'recoil';
+
 
 const Center = () => {
     const change = useRecoilValue(dbState);
@@ -13,9 +15,11 @@ const Center = () => {
     const setList = useSetRecoilState(newListState);
     const setRev = useSetRecoilState(revListState);
     const setDone = useSetRecoilState(doneListState);
+    
     useEffect(() => {
-        const url = "http://localhost:5500/api/v1/tasks";
+        const url = `${process.env.REACT_APP_URL}/api/v1/tasks` || `http://localhost:5500/api/v1/tasks`;
         getTask(url);
+        
     }, [change]);
 
     const getTask = async (url) => {
@@ -27,10 +31,10 @@ const Center = () => {
                 }
             })
             const data = await res.json();
-            console.log(data.payload);
-            setList(data.payload.filter((card)=>card.status==="New"));
-            setRev(data.payload.filter((card)=>card.status==="rev"))
-            setDone(data.payload.filter((card)=>card.status==="done"))
+            setList(data.payload.filter((card)=>card.status==="New" ));
+            setRev(data.payload.filter((card)=>card.status==="rev"  ));
+            setDone(data.payload.filter((card)=>card.status==="done"));
+            
 
         }
         catch (err) {

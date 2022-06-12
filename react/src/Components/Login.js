@@ -1,14 +1,13 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
-import Home from './Home';
 import { useNavigate } from 'react-router-dom';
 import Alert from './Alert';
-// import { useHistory } from 'react-router-dom';
+
 
 const Login = () => {
     const [success, setSuccess] = useState(false);
     const [show, setShow] = useState(false);
-    const [msg, setMsg] = useState("")
+    const [msg, setMsg] = useState("");
     const navigate = useNavigate();
     useEffect(() => {
       const token = localStorage.getItem('token');
@@ -19,7 +18,10 @@ const Login = () => {
     
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const url = "http://localhost:5500/api/v1/login";
+        console.log(process.env.REACT_APP_URL);
+        
+        // const url = "http://localhost:5500/api/v1/login";
+        const url = `${process.env.REACT_APP_URL}/api/v1/login` || "http://localhost:5500/api/v1/login";
         try{
             const res = await fetch(url,
                 {

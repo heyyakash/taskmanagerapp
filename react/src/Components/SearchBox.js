@@ -1,5 +1,4 @@
-import React from 'react'
-import {BsSearch} from 'react-icons/bs';
+import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { addModalState } from '../Atom/addNoteAtom';
 
@@ -16,7 +15,7 @@ const SearchBox = () => {
             <input type="text" className='bg-transparent h-[30px] outline-none' placeholder='Search' />
             <BsSearch className='text-gray-400' />
         </div> */}
-        <h1 className='text-2xl font-semibold text-primary'>Your tasks</h1>
+        <h1 className='text-2xl font-semibold text-primary hidden lg:flex'>Your tasks</h1>
         <div onClick = {handleAdd} className='bg-[#ffbf49] h-[40px] flex-grow lg:flex-grow-0 cursor-pointer ml-auto hover:bg-white hover:text-[#ffbf49] font-bold hover:border-2 hover:border-[#ffbf49] transition-all duration-200 text-white rounded-[200px] flex justify-center items-center w-[180px]'>Add Task</div>
         {/* <div onClick={handleSignOut} className='bg-[#ffbf49] cursor-pointer hover:bg-white hover:text-[#ffbf49] font-bold hover:border-2 hover:border-[#ffbf49] transition-all duration-200 text-white rounded-[200px] flex justify-center items-center px-4 ml-2'>Sign Out</div> */}
     </div>

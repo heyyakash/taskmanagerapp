@@ -1,18 +1,18 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Alert from './Alert';
 import { useNavigate } from 'react-router-dom';
-// import { useHistory } from 'react-router-dom';
+
+
 
 const CreateNew = () => {
     const navigate = useNavigate();
     const [success,setSuccess] = useState(false);
     const [show, setShow] = useState(false);
     const [msg, setMsg] = useState("");
-    const [color, setColor] = useState('');
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const url = "http://localhost:5500/api/v1/createuser";
+        const url = `${process.env.REACT_APP_URL}/api/v1/createuser` || `http://localhost:5500/api/v1/createuser`;
         try {
             const res = await fetch(url,
                 {
@@ -50,7 +50,6 @@ const CreateNew = () => {
                 setShow(true);
                 setTimeout(() => {
                     setShow(false);
-                    setColor("");
                     setMsg("");
                 }, 2000);
             }

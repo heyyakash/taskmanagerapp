@@ -5,7 +5,6 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './Components/Login';
 import { useNavigate } from 'react-router-dom';
 import CreateNew from './Components/CreateNew';
-import Center from './Components/Center';
 
 function App() {
   const navigate = useNavigate();

@@ -4,17 +4,18 @@ import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { dbState } from '../Atom/dbState';
 import { MdOutlineDone } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
+import moment from 'moment';
 
 const Card = ({ Title, date, Id, Type, Note }) => {
   const [color, setColor] = useState("bg-secondary");
   useEffect(() => {
     const diff = Math.abs(new Date() - new Date(date)) ;
     if (Type !== "done") {
-      if (diff<= 86400000 ){
+      if (diff<= 86400000 || moment(date).isBefore(moment(),'day')){
         setColor("bg-red-500");
       }
       else if(diff>86400000 && diff<=172800000 ){
-        setColor("bg-orange-500");
+        setColor("bg-orange-400");
       }
       else{
         setColor("bg-secondary")
@@ -31,7 +32,7 @@ const Card = ({ Title, date, Id, Type, Note }) => {
   const setChange = useSetRecoilState(dbState);
   const updateTask = async (action) => {
     try {
-      const url = `http://localhost:5500/api/v1/tasks/${Id}`;
+      const url = `${process.env.REACT_APP_URL}/api/v1/tasks/${Id}` || `http://localhost:5500/api/v1/tasks/${Id}`;
       const res = await fetch(url, {
         method: 'PATCH',
         headers: {
@@ -58,18 +59,18 @@ const Card = ({ Title, date, Id, Type, Note }) => {
   }
 
   const delTask = async (Id) => {
-    const url = `http://localhost:5500/api/v1/tasks/${Id}`
+    const url = `${process.env.REACT_APP_URL}/api/v1/tasks/${Id}`;
     const res = await fetch(url, {
       method: "DELETE",
     })
-    const data = await res.json();
+    await res.json();
     setChange([...change, 'del'])
   }
 
   return (
     <div className={`rounded-[20px] ${color!=="bg-secondary"?"text-white":""} flex w-full mb-2 flex-col ${color} p-4`}>
       <div className='flex items-center justify-between'>
-        <p className='font-[500] text-[1rem]'>{Title}</p>
+        <p className='font-[500] text-[1rem]'>{Title} {moment(date).isBefore(moment(),'day') && Type!=="done"?"(Backlog)":""}</p>
 
         <GrClose className={`cursor-pointer `} onClick={() => delTask(Id)} />
       </div>

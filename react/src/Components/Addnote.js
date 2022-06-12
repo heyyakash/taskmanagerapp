@@ -5,6 +5,7 @@ import { Dialog } from '@headlessui/react';
 import { addModalState } from '../Atom/addNoteAtom';
 import { dbState } from '../Atom/dbState';
 
+
 export default function MyDialog() {
     const date = useRecoilValue(dateState);
     const setDate = useSetRecoilState(dateState);
@@ -14,12 +15,11 @@ export default function MyDialog() {
     const change = useRecoilValue(dbState);
     const setChange = useSetRecoilState(dbState);
     const setAddModal = useSetRecoilState(addModalState);
-    let [isOpen, setIsOpen] = useState(false)
     
     
     const addnote = async()=>{
-        const url = "http://localhost:5500/api/v1/tasks";
-        const res = await fetch(url,{
+        const url = `${process.env.REACT_APP_URL}/api/v1/tasks` || `http://localhost:5500/api/v1/tasks`;
+        await fetch(url,{
             method:'POST',
             headers:{"Content-Type":"application/json",token:localStorage.getItem('token')},
             body:JSON.stringify({
@@ -27,7 +27,7 @@ export default function MyDialog() {
                 note,
                 date
             })
-        })
+        });
         setAddModal(false);
         setText('');
         setNote('');

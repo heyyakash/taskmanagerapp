@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { calendarFormat } from 'moment';
+
 import { GrPrevious, GrNext } from 'react-icons/gr';
 import Day from './Day';
 
