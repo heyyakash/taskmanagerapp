@@ -5,6 +5,7 @@ import { addModalState } from '../Atom/addNoteAtom';
 import { dbState } from '../Atom/dbState';
 
 export default function MyDialog() {
+    const [date,setDate] = useState();
     const [text,setText]= useState('');
     const [note,setNote] =useState('');
     const addVal = useRecoilValue(addModalState);
@@ -21,11 +22,13 @@ export default function MyDialog() {
             headers:{"Content-Type":"application/json",token:localStorage.getItem('token')},
             body:JSON.stringify({
                 task:text,
-                note
+                note,
+                date
             })
         })
         setAddModal(false);
         setText('');
+        setNote('');
         setChange([...change,'add']);
     }
 
@@ -41,9 +44,9 @@ export default function MyDialog() {
                     </Dialog.Description> */}
                     <input value = {text} onChange={(e)=>setText(e.target.value)} placeholder = "Enter Title" name="" id="" maxLength={80} className='w-full p-1 text-md bg-secondary rounded-[5px] outline-none h-[30px]'></input>
                     <textarea value = {note} onChange={(e)=>setNote(e.target.value)} name="" placeholder="Enter Note" id="" maxLength={80} className='w-full mt-2 p-1 text-md bg-secondary rounded-[5px] outline-none h-[120px]'></textarea>
-                    
-
-                    <button onClick = {addnote} disabled = {text.length===0?true:false} className='px-4 disabled:opacity-10 py-2 rounded-[20px] text-white hover:text-primary hover:bg-white transition-all duration-150 mt-2 bg-primary'>Add note</button>
+                    <input className='border-2 border-primary w-[100%] p-2 rounded-md text-primary focus:border-primary' type="date" onChange = {(e)=>setDate(e.target.value.toString())} />                    
+                    <br />
+                    <button placeholder='Select Date' onClick = {addnote} disabled = {text.length===0 || date.length===0 ?true:false} className='px-4 disabled:opacity-10 py-2 rounded-[20px] text-white hover:text-primary hover:bg-white transition-all duration-150 mt-2 bg-primary'>Add note</button>
                     {/* <button className='primary-button' onClick={() => setIsOpen(false)}>Cancel</button> */}
                 </Dialog.Panel>
             </div>
