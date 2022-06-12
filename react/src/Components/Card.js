@@ -32,7 +32,7 @@ const Card = ({ Title, date, Id, Type, Note }) => {
   const setChange = useSetRecoilState(dbState);
   const updateTask = async (action) => {
     try {
-      const url = `${process.env.REACT_APP_URL}/api/v1/tasks/${Id}` || `http://localhost:5500/api/v1/tasks/${Id}`;
+      const url = `${process.env.REACT_APP_URL}/api/v1/tasks/${Id}`;
       const res = await fetch(url, {
         method: 'PATCH',
         headers: {
