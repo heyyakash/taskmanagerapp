@@ -7,7 +7,8 @@ const createTask = async(req,res)=>{
             uid:req.body.uid,
             task:req.body.task,
             note:req.body.note,
-            status:req.body.status
+            status:req.body.status,
+            date:req.body.date,
         }
         body.user = req.user
         const creation = await Task.create(body)

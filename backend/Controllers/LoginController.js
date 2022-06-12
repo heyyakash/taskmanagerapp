@@ -12,7 +12,7 @@ const createUser = async(req,res) =>{
     try{
         const {firstname,lastname,username,password} = req.body
         const existingUser = await Login.findOne({username})
-        if(existingUser) return res.status(401).json({color:'red',msg:"User already exists"});
+        if(existingUser) return res.status(401).json({color:'red',msg:"User already exists",success:false});
         const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(password,salt);
         
@@ -24,10 +24,10 @@ const createUser = async(req,res) =>{
                 password:hashedPass
             }
         )
-        res.status(200).json({color:"green",msg:"User Created Successfully"});
+        res.status(200).json({color:"green",msg:"User Created Successfully",success:true});
     }
     catch(err){
-        res.status(500).json({err})
+        res.status(500).json({msg:err.errors[0].msg,success:false})
     }
 }
 
@@ -37,11 +37,11 @@ const loginUser = async(req,res)=>{
         if(req.body.password){
             const searchUser = await Login.findOne({username:req.body.username})
             if(!searchUser){
-                return res.status(403).json({color:"red",msg:"user does not exist"})
+                return res.status(403).json({success:false,msg:"User does not exist"})
             }
             const hash = searchUser.password
             const match = await bcrypt.compare(req.body.password,hash)
-            if(!match) return res.status(401).json({msg:"Wrong Password"})
+            if(!match) return res.status(401).json({msg:"Wrong Password",success:false})
             const data = {
                 user:{
                     id:searchUser._id
@@ -51,7 +51,7 @@ const loginUser = async(req,res)=>{
             res.status(200).json({authToken,success:true}); 
             return;
         }
-        res.status(500).json({color:"red",msg:"Enter Password"});
+        res.status(500).json({color:"red",msg:"Enter Password",success:false});
         
     }
     catch(err){
