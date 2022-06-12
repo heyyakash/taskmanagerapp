@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { newListState, doneListState, revListState } from '../Atom/taskList';
-import { dbState } from '../Atom/dbState';
+// import { dbState } from '../Atom/dbState';
 
 const RightSide = ({ setShowLoading }) => {
-  const change = useRecoilValue(dbState);
+  // const change = useRecoilValue(dbState);
   const [name, setName] = useState("User");
   const newList = useRecoilValue(newListState);
   const revList = useRecoilValue(revListState);
@@ -29,7 +29,7 @@ const RightSide = ({ setShowLoading }) => {
     }
 
     getuser(url);
-  }, [])
+  }, [setShowLoading])
 
   return (
     <>

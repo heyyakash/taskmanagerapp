@@ -26,7 +26,7 @@ const Card = ({ Title, date, Id, Type, Note }) => {
       setColor("bg-secondary")
     }
     
-  }, [])
+  }, [Type,date])
 
   const change = useRecoilValue(dbState);
   const setChange = useSetRecoilState(dbState);

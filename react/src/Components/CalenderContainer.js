@@ -23,7 +23,7 @@ const CalenderContainer = () => {
       )
     };
     setCalendar(a);
-  }, [value])
+  }, [startDay,endDay]);
 
 
   return (

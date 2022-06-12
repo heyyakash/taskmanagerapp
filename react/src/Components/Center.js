@@ -17,30 +17,32 @@ const Center = () => {
     const setDone = useSetRecoilState(doneListState);
     
     useEffect(() => {
-        const url = `${process.env.REACT_APP_URL}/api/v1/tasks`;
-        getTask(url);
         
-    }, [change]);
-
-    const getTask = async (url) => {
-        try {
-            const res = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'token': localStorage.getItem('token')
-                }
-            })
-            const data = await res.json();
-            setList(data.payload.filter((card)=>card.status==="New" ));
-            setRev(data.payload.filter((card)=>card.status==="rev"  ));
-            setDone(data.payload.filter((card)=>card.status==="done"));
-            
-
+        const getTask = async () => {
+            try {
+                const url = `${process.env.REACT_APP_URL}/api/v1/tasks`;
+                const res = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'token': localStorage.getItem('token')
+                    }
+                })
+                const data = await res.json();
+                setList(data.payload.filter((card)=>card.status==="New" ));
+                setRev(data.payload.filter((card)=>card.status==="rev"  ));
+                setDone(data.payload.filter((card)=>card.status==="done"));
+                
+    
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
-        catch (err) {
-            console.log(err)
-        }
-    }
+        getTask();
+        
+    }, [change,setDone,setList,setRev]);
+
+    
     return (
         <>
             <div className='flex flex-[1] flex-col gap-6 px-2'>
