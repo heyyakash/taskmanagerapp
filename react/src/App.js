@@ -9,18 +9,7 @@ import AdminLogin from './Components/Admin/AdminLogin';
 import AdminDash from './Components/Admin/AdminDash';
 
 function App() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login')
-    }
-    else {
-      navigate('/');
-    }
-
-
-  }, [])
+  
   return (
     <>
       <Routes>

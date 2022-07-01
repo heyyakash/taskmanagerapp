@@ -3,39 +3,20 @@ import { useRecoilValue } from 'recoil';
 import { newListState, doneListState, revListState } from '../../Atom/taskList';
 // import { dbState } from '../Atom/dbState';
 
-const RightSide = ({ setShowLoading }) => {
+const RightSide = ({ data }) => {
   // const change = useRecoilValue(dbState);
-  const [name, setName] = useState("User");
   const newList = useRecoilValue(newListState);
   const revList = useRecoilValue(revListState);
   const doneList = useRecoilValue(doneListState);
   const fraction = Math.round((doneList.length / (doneList.length + newList.length + revList.length)) * 100);
 
-  useEffect(() => {
-    const url = `${process.env.REACT_APP_URL}/api/v1/getuser`;
-    
-
-    const getuser = async (url) => {
-      setShowLoading(true);
-      const res = await fetch(url, {
-        method: 'GET',
-        headers: {
-          token: localStorage.getItem("token")
-        }
-      })
-      const data = await res.json();
-      setName(data.payload.firstname);
-      setShowLoading(false);
-    }
-
-    getuser(url);
-  }, [setShowLoading])
 
   return (
+    data && 
     <>
       <div className='bg-secondary lg:w-[320px] flex flex-col gap-5 px-3 md:py-0 rounded-xl'>
         <div className="flex justify-between w-full pl-5 items-center">
-          <h1 className='text-3xl font-[500] capitalize'>Hello <br /> {name}</h1>
+          <h1 className='text-3xl font-[500] capitalize'>Hello <br /> {data?.payload.firstname}</h1>
           <img src="https://cliply.co/wp-content/uploads/2020/10/442010362_WINKING_AVATAR_3D_400.png" alt="avatar" className='w-[100px]  scale-[1.1] h-[100px]' />
         </div>
 
