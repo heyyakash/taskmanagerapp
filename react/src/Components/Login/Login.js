@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Alert from './Alert';
+import Alert from '../UI/Alert';
 
 
 const Login = () => {
@@ -16,6 +16,11 @@ const Login = () => {
             navigate('/');
         }
     })
+
+    const handleAdminLogin = (e) => {
+        e.preventDefault();
+        navigate('/adminlogin');
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,8 +82,9 @@ const Login = () => {
                         <div className="flex gap-2 mt-2">
                             <button onClick={handleSubmit} disabled={uname.length === 0 || pass.length === 0 || disabled} className="disabled:cursor-not-allowed disabled:opacity-60 bg-primary transition-all duration-150 text-white py-1 px-2 hover:text-primary hover:bg-white cursor-pointer rounded-sm" type="submit">Sign In</button>
                             <button onClick={() => navigate('/create')} className="bg-secondary transition-all duration-150 text-primary py-1 px-2 hover:text-secondary hover:bg-primary cursor-pointer rounded-sm">Sign Up</button>
+                            
                         </div>
-
+                        <button onClick={(e)=> handleAdminLogin(e)} className="bg-secondary transition-all duration-150 text-primary py-1 px-2 hover:text-secondary hover:bg-primary cursor-pointer rounded-sm">Admin Login</button>
                     </form>
                 </div>
             </div>

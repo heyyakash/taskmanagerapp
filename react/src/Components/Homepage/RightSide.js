@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { newListState, doneListState, revListState } from '../Atom/taskList';
+import { newListState, doneListState, revListState } from '../../Atom/taskList';
 // import { dbState } from '../Atom/dbState';
 
 const RightSide = ({ setShowLoading }) => {

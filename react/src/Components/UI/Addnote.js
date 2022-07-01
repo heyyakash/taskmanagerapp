@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { dateState } from '../Atom/taskDateAtom';
+import { dateState } from '../../Atom/taskDateAtom';
 import {useSetRecoilState,useRecoilValue} from 'recoil';
 import { Dialog } from '@headlessui/react';
-import { addModalState } from '../Atom/addNoteAtom';
-import { dbState } from '../Atom/dbState';
+import { addModalState } from '../../Atom/addNoteAtom';
+import { dbState } from '../../Atom/dbState';
 import moment from 'moment';
 
 

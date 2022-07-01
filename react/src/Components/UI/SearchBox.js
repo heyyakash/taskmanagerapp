@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { addModalState } from '../Atom/addNoteAtom';
+import { addModalState } from '../../Atom/addNoteAtom';
 
 const SearchBox = () => {
   const setAddModal = useSetRecoilState(addModalState);

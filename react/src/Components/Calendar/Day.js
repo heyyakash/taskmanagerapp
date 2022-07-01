@@ -1,8 +1,8 @@
 import React from 'react';
 import moment from 'moment';
-import { addModalState } from '../Atom/addNoteAtom';
+import { addModalState } from '../../Atom/addNoteAtom';
 import { useSetRecoilState } from 'recoil';
-import { dateState } from '../Atom/taskDateAtom';
+import { dateState } from '../../Atom/taskDateAtom';
 
 const Day = ({ day, month }) => {
     const setAddModal = useSetRecoilState(addModalState);

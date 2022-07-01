@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GrClose } from 'react-icons/gr';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { dbState } from '../Atom/dbState';
+import { dbState } from '../../Atom/dbState';
 import { MdOutlineDone } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
 import moment from 'moment';

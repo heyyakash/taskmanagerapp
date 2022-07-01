@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import SearchBox from './SearchBox';
-import Tab from './Tab';
+import SearchBox from '../UI/SearchBox';
+import Tab from '../UI/Tab';
 
-import {newListState,revListState,doneListState} from '../Atom/taskList';
-import { dbState } from '../Atom/dbState';
+import {newListState,revListState,doneListState} from '../../Atom/taskList';
+import { dbState } from '../../Atom/dbState';
 import { useSetRecoilState,useRecoilValue } from 'recoil';
 
 

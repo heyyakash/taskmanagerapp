@@ -5,7 +5,7 @@ import {BsFillCalendarEventFill} from 'react-icons/bs';
 import {MdLogout} from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { Link ,useLocation} from 'react-router-dom';
-import { newListState,revListState,doneListState } from '../Atom/taskList';
+import { newListState,revListState,doneListState } from '../../Atom/taskList';
 import { useSetRecoilState } from 'recoil';
 
 const Sidebar = () => {
