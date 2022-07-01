@@ -20,15 +20,16 @@ function App() {
     }
 
 
-  },[])
+  }, [])
   return (
     <>
       <Routes>
-        <Route exact path = "/create" element = {<CreateNew />} />
+        <Route exact path="/admin" element={<AdminDash />} />
+        <Route exact path="/create" element={<CreateNew />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path = "/adminlogin" element = {<AdminLogin />} />
+        {/* <Route exact path="/adminlogin" element={<AdminLogin />} /> */}
         <Route exact path="*" element={<Home />} />
-        <Route exact path = "/admin" element = {<AdminDash />} />
+
       </Routes>
 
     </>
