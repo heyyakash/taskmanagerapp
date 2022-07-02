@@ -6,13 +6,14 @@ const port = process.env.PORT || 5500;
 require('dotenv').config();
 const notes =require("./Routes/TaskRoute.js");
 const LoginRoute = require('./Routes/LoginRoute.js');
+const AdminRoute = require('./Routes/AdminRoute');
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/api/v1',LoginRoute);
 app.use('/api/v1/tasks',notes)
-
+app.use('/api/v1/admin',AdminRoute);
 app.get('/',(req,res)=>{
     res.send("Works")
 })

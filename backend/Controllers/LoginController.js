@@ -32,7 +32,6 @@ const createUser = async(req,res) =>{
 }
 
 const loginUser = async(req,res)=>{
-    const success=false;
     try{
         if(req.body.password){
             const searchUser = await Login.findOne({username:req.body.username})
@@ -44,7 +43,8 @@ const loginUser = async(req,res)=>{
             if(!match) return res.status(401).json({msg:"Wrong Password",success:false})
             const data = {
                 user:{
-                    id:searchUser._id
+                    id:searchUser._id,
+                    type:searchUser.type || 'user'
                 }
             }
             const authToken = jwt.sign(data,process.env.JWT_SECRET);
