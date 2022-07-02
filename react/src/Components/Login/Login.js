@@ -65,14 +65,14 @@ const Login = () => {
     }
     const [uname, setUname] = useState("");
     const [pass, setPass] = useState("");
-
+ 
     return (
         <div className='w-[100%] h-[100vh] fixed bg-primary flex justify-center items-center'>
             <Alert msg={msg} success={success} show={show} />
-            <div className='p-8 bg-white flex gap-2 rounded-xl'>
+            <div className='p-8 bg-white flex flex-col lg:flex-row gap-2 rounded-xl'>
                 <div className="p-2 max-w-[500px]">
                     <h2 className="text-2xl text-primary">Task Manager App</h2>
-                    <p className="my-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium optio non saepe adipisci hic nulla quia dicta expedita quas facilis dolore reprehenderit molestiae, earum, dolores ea ipsam voluptas. Non veniam corrupti molestias repellendus ea. Vero corrupti tenetur iusto deserunt dicta facere? Explicabo voluptatem minima quod debitis. Delectus ratione nesciunt dolore!</p>
+                    <p className="my-2 hidden lg:flex">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium optio non saepe adipisci hic nulla quia dicta expedita quas facilis dolore reprehenderit molestiae, earum, dolores ea ipsam voluptas. Non veniam corrupti molestias repellendus ea. Vero corrupti tenetur iusto deserunt dicta facere? Explicabo voluptatem minima quod debitis. Delectus ratione nesciunt dolore!</p>
                 </div>
                 <div className='bg-white drop-shadow-xl rounded-md p-[2rem] justify-center w-[300px]'>
                     <form className='flex flex-col justify-center items-start gap-3 '>

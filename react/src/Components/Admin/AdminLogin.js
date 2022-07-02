@@ -10,7 +10,7 @@ const AdminLogin = () => {
   const handleSubmit = (e)=>{
     e.preventDefault();
     console.log(username,password)
-    if (username=="admin" && password=="1234567"){
+    if (username==="admin" && password==="1234567"){
       navigate('/admin');
       return;
     }

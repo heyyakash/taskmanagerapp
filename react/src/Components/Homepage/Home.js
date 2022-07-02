@@ -7,6 +7,7 @@ import CalenderContainer from '../Calendar/CalenderContainer';
 import { Routes, Route } from 'react-router-dom';
 import Loading from '../UI/Loading';
 import { useNavigate } from 'react-router-dom';
+import AdminDash from '../Admin/AdminDash';
 
 
 const Home = () => {
@@ -15,15 +16,16 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_URL}/api/v1/getuser`;
+    
 
-    const getuser = async (url) => {
+    const getuser = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
         navigate('/login');
       }
       else {
         setShowLoading(true);
+        const url = `${process.env.REACT_APP_URL}/api/v1/getuser`;
         const res = await fetch(url, {
           method: 'GET',
           headers: {
@@ -41,9 +43,12 @@ const Home = () => {
     }
 
 
-    getuser(url);
+    getuser();
   }, [])
 
+  if(data?.payload.type && data.payload.type==="admin"){
+    return <AdminDash data = {data} />
+  }
 
   return (
     <>
