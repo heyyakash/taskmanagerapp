@@ -1,10 +1,11 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { newListState, doneListState, revListState } from '../../Atom/taskList';
-// import { dbState } from '../Atom/dbState';
+import { userData } from '../../Atom/userState';
 
-const RightSide = ({ data }) => {
-  // const change = useRecoilValue(dbState);
+
+const RightSide = () => {
+  const data =useRecoilValue(userData);
   const newList = useRecoilValue(newListState);
   const revList = useRecoilValue(revListState);
   const doneList = useRecoilValue(doneListState);

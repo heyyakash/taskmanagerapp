@@ -8,7 +8,7 @@ import CreateNew from './Components/Login/CreateNew';
 // import AdminLogin from './Components/Admin/AdminLogin';
 import AdminDash from './Components/Admin/AdminDash';
 
-function App() {
+function App() { 
   
   return (
     <>

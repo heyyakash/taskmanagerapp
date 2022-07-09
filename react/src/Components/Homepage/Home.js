@@ -8,12 +8,16 @@ import { Routes, Route } from 'react-router-dom';
 import Loading from '../UI/Loading';
 import { useNavigate } from 'react-router-dom';
 import AdminDash from '../Admin/AdminDash';
-
+import ChatContainer from '../Chat/ChatContainer';
+import { userData } from '../../Atom/userState';
+import { useSetRecoilState,useRecoilValue } from 'recoil';
 
 const Home = () => {
   const [showLoading, setShowLoading] = useState(false);
-  const [data, setData] = useState();
+  // const [data, setData] = useState();
   const navigate = useNavigate();
+  const data = useRecoilValue(userData);
+  const setData = useSetRecoilState(userData);
 
   useEffect(() => {
     
@@ -46,8 +50,8 @@ const Home = () => {
     getuser();
   }, [])
 
-  if(data?.payload.type && data.payload.type==="admin"){
-    return <AdminDash data = {data} />
+  if(data && data.payload.type==="admin"){
+    return <AdminDash />
   }
 
   return (
@@ -60,10 +64,10 @@ const Home = () => {
         <Routes>
           <Route path="/" exact element={<Center />} />
           <Route path="/cal" exact element={<CalenderContainer />} />
-
+          <Route path="/chat" exact element ={<ChatContainer />} />
         </Routes>
 
-        <RightSide data={data} setShowLoading={setShowLoading} />
+        <RightSide setShowLoading={setShowLoading} />
       </div>
     </>
   )

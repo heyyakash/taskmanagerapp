@@ -4,7 +4,7 @@ import UserCard from './UserCard';
 
 const Users = () => {
     
-    const [users,setUsers] = useState([]);
+    const [users,setUsers] = useState();
     
     useEffect(() => {
         getAll();

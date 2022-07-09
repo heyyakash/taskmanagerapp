@@ -84,7 +84,7 @@ const Login = () => {
                             <button onClick={() => navigate('/create')} className="bg-secondary transition-all duration-150 text-primary py-1 px-2 hover:text-secondary hover:bg-primary cursor-pointer rounded-sm">Sign Up</button>
                             
                         </div>
-                        <button onClick={(e)=> handleAdminLogin(e)} className="bg-secondary transition-all duration-150 text-primary py-1 px-2 hover:text-secondary hover:bg-primary cursor-pointer rounded-sm">Admin Login</button>
+                        {/* <button onClick={(e)=> handleAdminLogin(e)} className="bg-secondary transition-all duration-150 text-primary py-1 px-2 hover:text-secondary hover:bg-primary cursor-pointer rounded-sm">Admin Login</button> */}
                     </form>
                 </div>
             </div>
