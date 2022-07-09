@@ -11,4 +11,14 @@ const sendChat = async(req,res) => {
     }
 }
 
-module.exports = {sendChat}
+const getChat = async(req,res) => {
+    try{
+        const chat = await Chat.find({})
+        res.status(200).json(chat)
+    }
+    catch(err){
+        res.status(500).json(err)
+    }
+}
+
+module.exports = {sendChat,getChat}

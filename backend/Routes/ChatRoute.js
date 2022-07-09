@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const {sendChat} = require('../Controllers/ChatController');
+const {sendChat,getChat} = require('../Controllers/ChatController');
 
-router.route('/sendchat').post(sendChat)
+router.route('/sendchat').post(sendChat).get(getChat);
 
 
 module.exports=router;
