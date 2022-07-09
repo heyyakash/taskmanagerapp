@@ -7,6 +7,7 @@ require('dotenv').config();
 const notes =require("./Routes/TaskRoute.js");
 const LoginRoute = require('./Routes/LoginRoute.js');
 const AdminRoute = require('./Routes/AdminRoute');
+const ChatRoute = require('./Routes/ChatRoute');
 
 app.use(cors());
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/v1',LoginRoute);
 app.use('/api/v1/tasks',notes)
 app.use('/api/v1/admin',AdminRoute);
+app.use('/api/v1/chat',ChatRoute);
 app.get('/',(req,res)=>{
     res.send("Works")
 })
