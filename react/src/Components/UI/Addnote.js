@@ -5,9 +5,10 @@ import { Dialog } from '@headlessui/react';
 import { addModalState } from '../../Atom/addNoteAtom';
 import { dbState } from '../../Atom/dbState';
 // import moment from 'moment';
-
+import { useMutation,useQueryClient } from 'react-query';
 
 export default function MyDialog() {
+    const queryClient = useQueryClient();
     const date = useRecoilValue(dateState);
     const setDate = useSetRecoilState(dateState);
     const [text,setText]= useState('');
@@ -16,22 +17,57 @@ export default function MyDialog() {
     const change = useRecoilValue(dbState);
     const setChange = useSetRecoilState(dbState);
     const setAddModal = useSetRecoilState(addModalState);
+    const url = `${process.env.REACT_APP_URL}/api/v1/tasks`;
     
-    
-    const addnote = async()=>{
+
+    const addNoteRQ = async (data) => {
         const url = `${process.env.REACT_APP_URL}/api/v1/tasks`;
-        await fetch(url,{
+        return await fetch(url,{
             method:'POST',
             headers:{"Content-Type":"application/json",token:localStorage.getItem('token')},
-            body:JSON.stringify({
+            body:JSON.stringify(data)
+            
+        });
+        // clear();
+    }
+
+    const addNoteMutation = useMutation(addNoteRQ);
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        try {
+            addNoteMutation.mutate({
                 task:text,
                 note,
                 date
+            },{
+            onSuccess:()=>{
+                queryClient.invalidateQueries('todos')
+                clear();
+            },
+            onError:()=>{console.log("error")}  
             })
-        });
-        clear();
-        setChange([...change,'add']);
+        }
+        catch(err){
+            console.log(err)
+        }
     }
+
+    // const addnote = async()=>{
+    //     const url = `${process.env.REACT_APP_URL}/api/v1/tasks`;
+    //     await fetch(url,{
+    //         method:'POST',
+    //         headers:{"Content-Type":"application/json",token:localStorage.getItem('token')},
+    //         body:JSON.stringify({
+    //             task:text,
+    //             note,
+    //             date
+    //         })
+            
+    //     });
+    //     clear();
+    //     // setChange([...change,'add']);
+    // }
 
 
     const clear = () => {
@@ -52,7 +88,7 @@ export default function MyDialog() {
                     <textarea value = {note} onChange={(e)=>setNote(e.target.value)} name="" placeholder="Enter Note" id="" maxLength={80} className='w-full mt-2 p-1 text-md bg-secondary rounded-[5px] outline-none h-[120px]'></textarea>
                     <input value = {date} min = {(new Date()).toISOString().split('T')[0]} className='border-2 border-primary w-[100%] p-2 rounded-md text-primary focus:border-primary' type="date" onChange = {(e)=>setDate(e.target.value.toString())} />                    
                     <br />
-                    <button  onClick = {addnote}  disabled = {text.length===0?true:false} className='px-4 disabled:opacity-10 py-2 rounded-[20px] text-white hover:text-primary hover:bg-white transition-all duration-150 mt-2 bg-primary'>Add note</button>
+                    <button onClick = {handleSubmit}  disabled = {text.length===0?true:false} className='px-4 disabled:opacity-10 py-2 rounded-[20px] text-white hover:text-primary hover:bg-white transition-all duration-150 mt-2 bg-primary'>Add note</button>
                     
                 </Dialog.Panel>
             </div>

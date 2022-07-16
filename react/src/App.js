@@ -1,26 +1,29 @@
 import './App.css';
-// import { useEffect } from 'react';
 import Home from './Components/Homepage/Home';
 import { Routes, Route } from 'react-router-dom';
 import Login from './Components/Login/Login';
-// import { useNavigate } from 'react-router-dom';
 import CreateNew from './Components/Login/CreateNew';
-// import AdminLogin from './Components/Admin/AdminLogin';
 import AdminDash from './Components/Admin/AdminDash';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
+
 
 function App() { 
-  
+  const queryClient = new QueryClient;
+
   return (
     <>
+    <QueryClientProvider client = {queryClient}>
       <Routes>
         <Route exact path="/admin" element={<AdminDash />} />
         <Route exact path="/create" element={<CreateNew />} />
         <Route exact path="/login" element={<Login />} />
-        {/* <Route exact path="/adminlogin" element={<AdminLogin />} /> */}
         <Route exact path="*" element={<Home />} />
 
       </Routes>
-
+      </QueryClientProvider>
     </>
   );
 }

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { GrClose } from 'react-icons/gr';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { dbState } from '../../Atom/dbState';
 import { MdOutlineDone } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
 import moment from 'moment';
+import { useMutation ,useQueryClient} from 'react-query';
 
 const Card = ({ Title, date, Id, Type, Note }) => {
+  const queryClient = useQueryClient();
   const [color, setColor] = useState("bg-secondary");
+
   useEffect(() => {
     const diff = Math.abs(new Date() - new Date(date)) ;
     if (Type !== "done") {
@@ -28,12 +29,12 @@ const Card = ({ Title, date, Id, Type, Note }) => {
     
   }, [Type,date])
 
-  const change = useRecoilValue(dbState);
-  const setChange = useSetRecoilState(dbState);
-  const updateTask = async (action) => {
+
+  const updateTask = async (change) => {
     try {
+      const {Id,action} = change;
       const url = `${process.env.REACT_APP_URL}/api/v1/tasks/${Id}`;
-      const res = await fetch(url, {
+      await fetch(url, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
@@ -42,28 +43,38 @@ const Card = ({ Title, date, Id, Type, Note }) => {
           status: action
         })
       })
-      await res.json();
-      setChange([...change, 'update'])
     }
     catch (err) {
       console.log(err)
     }
   }
 
+  const updateTaskMutation = useMutation(updateTask);
+  
   const handleReview = () => {
-    updateTask("rev");
+    updateTaskMutation.mutate({action:"rev",Id},{
+      onSuccess:() => queryClient.invalidateQueries('todos')
+    })
   }
   const handleDone = () => {
-    updateTask("done");
+    updateTaskMutation.mutate({action:"done",Id},{
+      onSuccess:() => queryClient.invalidateQueries('todos')
+    })
   }
 
   const delTask = async (Id) => {
     const url = `${process.env.REACT_APP_URL}/api/v1/tasks/${Id}`;
-    const res = await fetch(url, {
+    await fetch(url, {
       method: "DELETE",
     })
-      await res.json();
-    setChange([...change, 'del'])
+  }
+
+  const deleteTaskMutation = useMutation(delTask);
+
+  const handleDelete = () => {
+    deleteTaskMutation.mutate(Id,{
+      onSuccess:() => queryClient.invalidateQueries('todos')
+    })
   }
 
   return (
@@ -71,7 +82,7 @@ const Card = ({ Title, date, Id, Type, Note }) => {
       <div className='flex items-center justify-between'>
         <p className='font-[500] text-[1rem]'>{Title} {moment(date).isBefore(moment(),'day') && Type!=="done"?"(Backlog)":""}</p>
 
-        <GrClose className={`cursor-pointer `} onClick={() => delTask(Id)} />
+        <GrClose className={`cursor-pointer `} onClick={handleDelete} />
       </div>
       <div className='mt-2'>
       {Note && (
