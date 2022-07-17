@@ -53,21 +53,7 @@ export default function MyDialog() {
         }
     }
 
-    // const addnote = async()=>{
-    //     const url = `${process.env.REACT_APP_URL}/api/v1/tasks`;
-    //     await fetch(url,{
-    //         method:'POST',
-    //         headers:{"Content-Type":"application/json",token:localStorage.getItem('token')},
-    //         body:JSON.stringify({
-    //             task:text,
-    //             note,
-    //             date
-    //         })
-            
-    //     });
-    //     clear();
-    //     // setChange([...change,'add']);
-    // }
+  
 
 
     const clear = () => {

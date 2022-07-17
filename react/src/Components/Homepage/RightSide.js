@@ -1,15 +1,15 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { newListState, doneListState, revListState } from '../../Atom/taskList';
-import { userData } from '../../Atom/userState';
+import { useQuery } from 'react-query';
+import { getTaskRQ } from '../../hooks';
 
 
 const RightSide = () => {
-  const data =useRecoilValue(userData);
-  const newList = useRecoilValue(newListState);
-  const revList = useRecoilValue(revListState);
-  const doneList = useRecoilValue(doneListState);
-  const fraction = Math.round((doneList.length / (doneList.length + newList.length + revList.length)) * 100);
+
+  const {data} = useQuery('todos',getTaskRQ);
+  const newList = data?.payload.filter((card)=>card.status==="New");
+  const revList = data?.payload.filter((card)=>card.status==="rev");
+  const doneList = data?.payload.filter((card)=>card.status==="done");
+  const fraction = Math.round((doneList?.length / (doneList?.length + newList?.length + revList?.length)) * 100);
 
 
   return (
@@ -25,8 +25,6 @@ const RightSide = () => {
           <div className="p-2 flex px-7 py-4 justify-between items-center"><p>Total Tasks</p> <p> {newList.length + doneList.length + revList.length}</p></div>
           <div className="p-2 flex px-7 py-4 justify-between items-center"><p>To Do</p> <p> {newList.length}</p></div>
           <div className="p-2 flex px-7 py-4 justify-between items-center"><p>Completed Tasks</p> <p> {doneList.length}</p></div>
-          {/* <div className="p-2 flex px-4 py-4 items-center">Current Tasks : {newList.length}</div>
-          <div className="p-2 flex px-4 py-4 items-center">Completed Tasks : { doneList.length }</div> */}
         </div>
 
         <div className='flex flex-col justify-center items-center mt-4 gap-2'>
