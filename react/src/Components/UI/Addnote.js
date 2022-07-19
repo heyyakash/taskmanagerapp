@@ -28,7 +28,6 @@ export default function MyDialog() {
             body:JSON.stringify(data)
             
         });
-        // clear();
     }
 
     const addNoteMutation = useMutation(addNoteRQ);

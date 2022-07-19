@@ -13,5 +13,3 @@ export const doneListState = atom({
     default:[]
 })
 
-
-// module.exports = {newListState,revListState,doneListState};

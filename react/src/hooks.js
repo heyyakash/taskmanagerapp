@@ -1,6 +1,3 @@
-import { useQuery } from "react-query";
-
-
 export const getTaskRQ = async () => {
     const url = `${process.env.REACT_APP_URL}/api/v1/tasks`;
         const res = await fetch(url, {

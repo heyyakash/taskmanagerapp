@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&display=swap');
 @tailwind base;
 @tailwind components;
@@ -22,10 +23,10 @@
 
 @layer components{
   .navlink{
-    @apply cursor-pointer hover:scale-[1.5] transition-all duration-200;
+    @apply cursor-pointer hover:text-black transition-all duration-200;
   }
   .active{
-    @apply text-primary;
+    @apply text-black border-r-2 border-black;
   }
   .primary-button{
     @apply h-10 px-2;

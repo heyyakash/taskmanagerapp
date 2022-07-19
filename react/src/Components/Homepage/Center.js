@@ -15,9 +15,10 @@ const Center = () => {
     return (
         data&&
         <>
-            <div className='flex flex-[1] flex-col gap-6 px-2'>
+            <div className='flex flex-[1] flex-col gap-6 bg-gray-back'>
                 <SearchBox />
-                <div className='w-full flex flex-col lg:flex-row gap-4'>
+                <h1 className='text-gray-700 text-4xl font-[600] px-8 mt-2'>Active Tasks</h1>
+                <div className='w-full flex flex-col lg:flex-row  px-8 h-full gap-8'>
                     <Tab List={data?.payload.filter((card)=>card.status==="New")} title="Next Up" Sort="Date" Type="new" />
                     <Tab List={data?.payload.filter((card)=>card.status==="rev")} title="In Progress" Sort="Priority" Type ="rev" />
                     <Tab List={data?.payload.filter((card)=>card.status==="done")} title="Done" Sort="Date" Type="done" />

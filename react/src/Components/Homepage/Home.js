@@ -3,6 +3,7 @@ import Center from './Center';
 import RightSide from './RightSide';
 import Sidebar from './Sidebar';
 import Addnote from '../UI/Addnote';
+import UpdateNote from '../UI/UpdateNote';
 import CalenderContainer from '../Calendar/CalenderContainer';
 import { Routes, Route } from 'react-router-dom';
 import Loading from '../UI/Loading';
@@ -14,7 +15,6 @@ import { useSetRecoilState,useRecoilValue } from 'recoil';
 
 const Home = () => {
   const [showLoading, setShowLoading] = useState(false);
-  // const [data, setData] = useState();
   const navigate = useNavigate();
   const data = useRecoilValue(userData);
   const setData = useSetRecoilState(userData);
@@ -56,9 +56,10 @@ const Home = () => {
 
   return (
     <>
-      <div className='flex flex-col lg:flex-row relative my-2 py-3 max-w-[1300px] w-full px-4 gap-2 mx-auto lg:h-[98vh] '>
+      <div className='flex flex-col lg:flex-row relative my-3 max-w-[1380px] w-full overflow-hidden border-[.5px] border-gray-200 shadow-xl bg-white rounded-[20px] mx-auto lg:h-[98vh] '>
         <Loading showLoading={showLoading} />
         <Addnote />
+        <UpdateNote />
         <Sidebar />
 
         <Routes>
