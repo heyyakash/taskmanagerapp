@@ -95,7 +95,7 @@ const Card = ({ Title, date, Id, Type, Note }) => {
   }
 
   return (
-    <div className={`rounded-[20px] bg-white flex w-full mb-2 flex-col p-4`}>
+    <div className={`rounded-[20px] bg-white flex w-full mb-2 mx-auto flex-col p-4`}>
       <div className='flex items-center justify-between'>
         <p className='font-[500] text-[1rem] '>{Title} {moment(date).isBefore(moment(), 'day') && Type !== "done" ? "(Backlog)" : ""}</p>
 

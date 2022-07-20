@@ -9,7 +9,7 @@ const Tab = ({title,Sort,List,Type}) => {
             <p className='font-[500] text-[1.2rem] text-slate-900 ml-2'>{title}</p>
             {/* <p className='text-gray-400 text-sm'>{Sort}</p> */}
         </div>
-        <div className='lg:pr-2'>
+        <div>
         {List && List.map((card)=><Card Title = {card.task} Note = {card.note} Type = {Type} key = {card._id} date ={card.date} Id = {card._id} />)}
            
         </div>
