@@ -4,9 +4,9 @@ const {Schema} = mongoose;
 
 const ChatSchema = new Schema({
     text:{type:String, required:true},
-    // timeStamp:{tdefault:new Date()},
     timeStamp:{type:Date,default:new Date()},
-    uid:{type:String,required:true}
+    uid:{type:String,required:true},
+    username:{type:String,required:true}
 })
 
-module.exports = mongoose.model('Chat',ChatSchema);
+module.exports = mongoose.model('chats',ChatSchema);

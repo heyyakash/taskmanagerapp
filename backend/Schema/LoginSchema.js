@@ -9,4 +9,4 @@ const LoginSchema =new Schema({
     type:{type:String,default:"user"}
 })
 
-module.exports = mongoose.model('Login',LoginSchema);
+module.exports = mongoose.model('logins',LoginSchema);
