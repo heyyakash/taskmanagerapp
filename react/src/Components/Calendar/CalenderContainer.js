@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import { GrPrevious, GrNext } from 'react-icons/gr';
 import Day from './Day';
+import SearchBox from '../UI/SearchBox';
 
 const CalenderContainer = () => {
   const [value, setValue] = useState(moment());
@@ -28,9 +29,10 @@ const CalenderContainer = () => {
 
   return (
     <>
-      <div className='flex flex-[1] flex-col py-2 mt-2 lg:mt-0 lg:py-3 gap-6 bg-secondary rounded-xl px-2 lg:px-3'>
+      <div className='flex flex-[1] flex-col  mt-2 lg:mt-0 bg-secondary '>
         {/* <Calendar onChange={setValue} value = {value}></Calendar> */}
-        <div className='bg-white w-full flex flex-col h-full rounded-xl'>
+        <SearchBox heading="Calendar" />
+        <div className='bg-white p-4 w-full flex flex-col h-full'>
 
           <div className='w-full h-[30px] p-4 flex justify-between items-center '>
             <span className='calendar-btn' onClick={() => setValue(value.clone().subtract(1, 'months'))}>

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { updateNoteAtom,updateNoteText,updateNoteNote,updateNoteDate ,updateNoteTaskId} from '../../Atom/updateNoteAtom';
+import { updateNoteAtom, updateNoteText, updateNoteNote, updateNoteDate, updateNoteTaskId } from '../../Atom/updateNoteAtom';
 import { GrClose } from 'react-icons/gr';
 import { MdOutlineDone } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
 import moment from 'moment';
 import { useSetRecoilState } from 'recoil';
 import { useMutation, useQueryClient } from 'react-query';
-import {FiEdit2} from 'react-icons/fi'
+import { FiEdit2 } from 'react-icons/fi'
 
 const Card = ({ Title, date, Id, Type, Note }) => {
+  const [Backlog, setBacklog] = useState(false);
+  const [Urgent, setUrgent] = useState(false)
   const queryClient = useQueryClient();
   const [color, setColor] = useState("bg-secondary");
   const updateNoteModal = useSetRecoilState(updateNoteAtom);
@@ -18,25 +20,18 @@ const Card = ({ Title, date, Id, Type, Note }) => {
   const setTaskID = useSetRecoilState(updateNoteTaskId);
 
 
-  // useEffect(() => {
-  //   const diff = Math.abs(new Date() - new Date(date));
-  //   if (Type !== "done") {
-  //     if (diff <= 86400000 || moment(date).isBefore(moment(), 'day')) {
-  //       setColor("bg-red-500");
-  //     }
-  //     else if (diff > 86400000 && diff <= 172800000) {
-  //       setColor("bg-orange-400");
-  //     }
-  //     else {
-  //       setColor("bg-secondary")
-  //     }
+  useEffect(() => {
+    const diff = Math.abs(new Date() - new Date(date));
+    if (Type !== "done") {
+      if (diff <= 86400000 || moment(date).isBefore(moment(), 'day')) {
+        setUrgent(true)
+      }
+      if (moment(date).isBefore(moment(), 'day')) {
+        setBacklog(true);
+      }
 
-  //   }
-  //   else {
-  //     setColor("bg-secondary")
-  //   }
-
-  // }, [Type, date])
+    }
+  }, [Type, date])
 
 
   const updateTask = async (change) => {
@@ -105,12 +100,25 @@ const Card = ({ Title, date, Id, Type, Note }) => {
         {Note && (
           <>
 
-            <p>{Note}</p>
+            <p className='text-gray-500'>{Note}</p>
 
 
           </>
         )}
-        <p className={`text-[.8rem] ${color !== "bg-secondary" ? "text-white" : "text-gray-400"} my-2 `}>{Type !== "done" ? `Due ${date}` : `Completed`}</p>
+        <div className="flex flex-wrap gap-2  ">
+        <p className={`text-[.8rem] text-gray-400 my-2 `}>{Type !== "done" ? `Due ${date}` : `Completed`}</p>
+        {Backlog ?
+          <>
+            <div className="rounded-[20px] text-[.8rem] p-2 bg-red-500 text-white">Backlog</div>
+          </>
+          :
+          ""}
+        {Urgent ?
+          <>
+            <div className="rounded-[20px] text-[.8rem] p-2 bg-orange-500 text-white">Urgent</div>
+          </>
+          : ""}
+          </div>
       </div>
 
 

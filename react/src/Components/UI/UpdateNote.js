@@ -12,7 +12,6 @@ export default function MyDialog() {
     const [text,setText]= [useRecoilValue(updateNoteText),useSetRecoilState(updateNoteText)];
     const [note,setNote]= [useRecoilValue(updateNoteNote),useSetRecoilState(updateNoteNote)];
     const [id,setId] = [useRecoilValue(updateNoteTaskId),useSetRecoilState(updateNoteTaskId)];
-    console.log(id)
 
 
     const updateTask = async (data) => {

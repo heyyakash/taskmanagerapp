@@ -12,60 +12,68 @@ import AdminDash from '../Admin/AdminDash';
 import ChatContainer from '../Chat/ChatContainer';
 import { userData } from '../../Atom/userState';
 import { useSetRecoilState,useRecoilValue } from 'recoil';
+import Settings from './Settings';
+import Chat from './Chat';
+import { useQuery } from 'react-query';
+import { getUser } from '../../hooks';
 
 const Home = () => {
   const [showLoading, setShowLoading] = useState(false);
   const navigate = useNavigate();
-  const data = useRecoilValue(userData);
-  const setData = useSetRecoilState(userData);
+  // const data = useRecoilValue(userData);
+  // const setData = useSetRecoilState(userData);
+  const token = localStorage.getItem('token')
+
 
   useEffect(() => {
-    
-
-    const getuser = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        navigate('/login');
-      }
-      else {
-        setShowLoading(true);
-        const url = `${process.env.REACT_APP_URL}/api/v1/getuser`;
-        const res = await fetch(url, {
-          method: 'GET',
-          headers: {
-            token
-          }
-        })
-        const data = await res.json();
-        setData(data);
-        navigate('/');
-        setShowLoading(false);
-      }
-      
-
-
+    if (!token) {
+      navigate('/login');
     }
-
-
-    getuser();
   }, [])
+  
 
+  const {data,isLoading,error} = useQuery('user',getUser,{
+    onSuccess:()=>navigate('/')
+  });
+  // if(data){
+  //   navigate('/');
+  // }
+
+  // const getuser = async () => {
+  //   const token = localStorage.getItem("token");
+    
+  //   else {
+  //     setShowLoading(true);
+      
+  //     setData(data);
+  //     navigate('/');
+  //     setShowLoading(false);
+  //   }
+
+  // }
+  if(isLoading){
+    return<div>Loading</div>
+  }
+  if(error){
+    return <div>error</div>
+  }
   if(data && data.payload.type==="admin"){
     return <AdminDash />
   }
 
   return (
     <>
-      <div className='flex flex-col lg:flex-row relative my-3 max-w-[1380px] w-full overflow-hidden border-[.5px] border-gray-200 shadow-xl bg-white rounded-[20px] mx-auto lg:h-[98vh] '>
+      <div className='flex flex-col lg:flex-row relative max-w-[1380px] lg:w-[1380px] flex-wrap overflow-hidden border-[.5px] border-gray-200 drop-shadow-2xl rounded-[20px]  lg:h-[95vh] '>
         <Loading showLoading={showLoading} />
         <Addnote />
         <UpdateNote />
         <Sidebar />
-
+        
         <Routes>
           <Route path="/" exact element={<Center />} />
+          <Route path="/chat" exact element ={<Chat />} />
+          <Route path="/settings" exact element ={<Settings />} />
           <Route path="/cal" exact element={<CalenderContainer />} />
-          <Route path="/chat" exact element ={<ChatContainer />} />
         </Routes>
 
         <RightSide setShowLoading={setShowLoading} />

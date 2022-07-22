@@ -27,11 +27,11 @@ const Sidebar = () => {
             
             
             <nav className='flex gap-3  text-[1.1rem] text-gray-400 lg:gap-2 group lg:flex-col items-center justify-start lg:mt-[2rem]'>
-              <div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/"?"active":""} grid place-items-center`}><Link to = "/"><BsFillGrid1X2Fill /></Link></div>
-              <div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/cal"?"active":""} grid place-items-center`}><Link to = "/cal"><BsFillCalendarEventFill /></Link></div>
-              <div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/chat"?"active":""} grid place-items-center`}><Link to = "/chat"><BsFillChatFill /></Link></div>
-              <div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/chat"?"active":""} grid place-items-center text-2xl`}><Link to = "/chat"><AiFillSetting  /></Link></div>      
-           
+            <Link to = "/"><div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/"?"active":""} grid place-items-center`}><BsFillGrid1X2Fill /></div></Link>
+            <Link to = "/cal"><div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/cal"?"active":""} grid place-items-center`}><BsFillCalendarEventFill /></div></Link>
+            <Link to = "/chat"><div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/chat"?"active":""} grid place-items-center`}><BsFillChatFill /></div></Link>
+            <Link to = "/settings"> <div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/settings"?"active":""} grid place-items-center text-2xl`}><AiFillSetting  /></div></Link>      
+          
             </nav>
             <div className='lg:mt-auto lg:mb-5'>
               <MdLogout onClick = {handleSignOut} className = 'navlink text-red-400 text-[1.5rem]' />

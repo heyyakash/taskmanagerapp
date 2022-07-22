@@ -1,26 +1,26 @@
 import React from 'react';
-import { useState ,useEffect  } from 'react';
+import { useState } from 'react';
 import {BiSend} from 'react-icons/bi';
 import { userData } from '../../Atom/userState';
 import { useRecoilValue } from 'recoil';
 import ChatBody from './ChatBody';
 
 
-
 const ChatContainer = () => {
   const user = useRecoilValue(userData);
+
   const [text,setText] = useState("");
-  
-  
+
   const handleSend = async(e) => {
     e.preventDefault();
     try{
+      const username = user.payload.username
       const uid = user.payload._id
       const url = `http://localhost:5500/api/v1/chat/sendchat`;
       const res = await fetch(url,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({text,uid,timeStamp:new Date()})
+        body:JSON.stringify({text,uid,username})
       })
       const data = await res.json();
       if (data.success){
@@ -36,7 +36,6 @@ const ChatContainer = () => {
   
   
   return (
-    user&&
     <div className='flex-[1] flex flex-col px-2'>
         <h2 className='text-2xl font-semibold text-primary'>Live Chat</h2>
         <ChatBody />

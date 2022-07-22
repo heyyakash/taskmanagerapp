@@ -63,13 +63,13 @@ const CreateNew = () => {
     const [lname, setLname] = useState("");
 
     return (
-        <div className=' w-[100%] h-[100vh] fixed bg-primary flex justify-center items-center'>
+        <div className=' w-[100%] h-[100vh] flex justify-center items-center'>
             <Alert msg={msg} success={success} show={show} />
             <div className='bg-white drop-shadow-2xl rounded-md p-[2rem] justify-center w-[300px]'>
 
                 <form>
                     <div className="relative z-0 w-full mb-6 group">
-                        <input type="email" name="floating_email" value={uname} onChange={(e) => setUname(e.target.value)} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="Email" required />
+                        <input type="email" name="floating_email" value={uname} onChange={(e) => setUname(e.target.value)} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
                             <label htmlFor="floating_email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
                     </div>
                     <div className="relative z-0 w-full mb-6 group">

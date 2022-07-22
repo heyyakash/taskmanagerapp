@@ -67,7 +67,7 @@ const Login = () => {
     const [pass, setPass] = useState("");
  
     return (
-        <div className='w-[100%] h-[100vh] fixed bg-primary flex justify-center items-center'>
+        <div className='w-[100%] h-[100vh] flex justify-center items-center'>
             <Alert msg={msg} success={success} show={show} />
             <div className='p-8 bg-white flex flex-col lg:flex-row gap-2 rounded-xl'>
                 <div className="p-2 max-w-[500px]">
