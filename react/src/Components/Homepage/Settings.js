@@ -1,14 +1,31 @@
-import React, { useState } from 'react'
-import { useQuery } from 'react-query'
-import { useNavigate } from 'react-router-dom'
-import { getUser } from '../../hooks'
-import SearchBox from '../UI/SearchBox'
+import React, { useState } from 'react';
+import { useMutation, useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import { getUser } from '../../hooks';
+import SearchBox from '../UI/SearchBox';
+import { updateUser,deleteUser } from '../../hooks';
 
 const Settings = () => {
+
   const navigate = useNavigate()
   const { data: user } = useQuery('user', getUser, {
     onSuccess: ()=>navigate('/settings')
   })
+
+  const updateMutation = useMutation(updateUser);
+  const deleteMutation = useMutation(deleteUser);
+
+  const handleUpdate = (e)=> {
+    e.preventDefault();
+    updateMutation.mutate({
+      id:user.payload._id,
+      payload:{
+        firstname,lastname,email,username
+      }
+    },{
+      onSuccess:()=>console.log('updated')
+    })
+  }
 
   const [firstname,setFirstname] = useState(user.payload.firstname)
   const [lastname,setLastname] = useState(user.payload.lastname)
@@ -37,7 +54,7 @@ const Settings = () => {
             <input type="text" value = {username} onChange = {(e)=>setUserName(e.target.value)} id="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="johndoe" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
           </div>
         </div>
-        <button className='p-2 bg-primary text-white hover:bg-white hover:text-primary transition-all duration-100 rounded-lg' type = "submit">Update</button>
+        <button onClick={(e)=>handleUpdate(e)} className='p-2 bg-primary text-white hover:bg-white hover:text-primary transition-all duration-100 rounded-lg' type = "submit">Update</button>
         <button className='ml-3 p-2 bg-red-500 text-white hover:bg-white hover:text-red-500 transition-all duration-100 rounded-lg'>Delete Account</button>
       </form>
     </div>

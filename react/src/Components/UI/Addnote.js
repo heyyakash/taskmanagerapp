@@ -3,8 +3,6 @@ import { dateState } from '../../Atom/taskDateAtom';
 import {useSetRecoilState,useRecoilValue} from 'recoil';
 import { Dialog } from '@headlessui/react';
 import { addModalState } from '../../Atom/addNoteAtom';
-import { dbState } from '../../Atom/dbState';
-// import moment from 'moment';
 import { useMutation,useQueryClient } from 'react-query';
 
 export default function MyDialog() {
@@ -14,10 +12,8 @@ export default function MyDialog() {
     const [text,setText]= useState('');
     const [note,setNote] =useState('');
     const addVal = useRecoilValue(addModalState);
-    const change = useRecoilValue(dbState);
-    const setChange = useSetRecoilState(dbState);
     const setAddModal = useSetRecoilState(addModalState);
-    const url = `${process.env.REACT_APP_URL}/api/v1/tasks`;
+ 
     
 
     const addNoteRQ = async (data) => {

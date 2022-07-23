@@ -9,9 +9,6 @@ import { Routes, Route } from 'react-router-dom';
 import Loading from '../UI/Loading';
 import { useNavigate } from 'react-router-dom';
 import AdminDash from '../Admin/AdminDash';
-import ChatContainer from '../Chat/ChatContainer';
-import { userData } from '../../Atom/userState';
-import { useSetRecoilState,useRecoilValue } from 'recoil';
 import Settings from './Settings';
 import Chat from './Chat';
 import { useQuery } from 'react-query';
@@ -20,8 +17,6 @@ import { getUser } from '../../hooks';
 const Home = () => {
   const [showLoading, setShowLoading] = useState(false);
   const navigate = useNavigate();
-  // const data = useRecoilValue(userData);
-  // const setData = useSetRecoilState(userData);
   const token = localStorage.getItem('token')
 
 
@@ -35,22 +30,7 @@ const Home = () => {
   const {data,isLoading,error} = useQuery('user',getUser,{
     onSuccess:()=>navigate('/')
   });
-  // if(data){
-  //   navigate('/');
-  // }
 
-  // const getuser = async () => {
-  //   const token = localStorage.getItem("token");
-    
-  //   else {
-  //     setShowLoading(true);
-      
-  //     setData(data);
-  //     navigate('/');
-  //     setShowLoading(false);
-  //   }
-
-  // }
   if(isLoading){
     return<div>Loading</div>
   }
@@ -63,7 +43,7 @@ const Home = () => {
 
   return (
     <>
-      <div className='flex flex-col lg:flex-row relative max-w-[1380px] lg:w-[1380px] flex-wrap overflow-hidden border-[.5px] border-gray-200 drop-shadow-2xl rounded-[20px]  lg:h-[95vh] '>
+      <div className='flex flex-col lg:flex-row relative max-w-[1200px] lg:w-[1380px] flex-wrap overflow-hidden border-[.5px] border-gray-200 drop-shadow-2xl rounded-[20px]  lg:h-[95vh] '>
         <Loading showLoading={showLoading} />
         <Addnote />
         <UpdateNote />

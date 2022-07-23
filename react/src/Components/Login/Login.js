@@ -17,15 +17,11 @@ const Login = () => {
         }
     })
 
-    const handleAdminLogin = (e) => {
-        e.preventDefault();
-        navigate('/adminlogin');
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const url = `${process.env.REACT_APP_URL}/api/v1/login`;
+            // const url = `http://localhost:5500/api/v1/login`;
             setDisabled(true);
             const res = await fetch(url,
                 {
