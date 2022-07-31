@@ -1,4 +1,5 @@
 const Login = require('../Schema/LoginSchema.js');
+const Task = require('../Schema/TasksSchema');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
@@ -101,7 +102,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     const { id } = req.params;
     try {
-
+        await Task.findOneAndDelete({uid:id});
         await Login.findOneAndDelete({ _id: id });
         res.status(200).json({ success: true, msg: "Deleted Successfully" });
     }
