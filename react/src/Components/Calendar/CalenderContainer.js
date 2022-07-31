@@ -29,7 +29,7 @@ const CalenderContainer = () => {
 
   return (
     <>
-      <div className='flex flex-[1] flex-col  mt-2 lg:mt-0 bg-secondary '>
+      <div className='flex flex-[1] flex-col  lg:mt-0 bg-secondary '>
         {/* <Calendar onChange={setValue} value = {value}></Calendar> */}
         <SearchBox heading="Calendar" />
         <div className='bg-white p-4 w-full flex flex-col h-full'>

@@ -8,10 +8,6 @@ import Empty from '../UI/Empty';
 const Center = () => {
 
     const { isLoading, isError, data, error } = useQuery('todos', getTaskRQ);
-    // if(data.payload.length===0){
-    //     return <><Empty /></>
-
-    // }
 
     if (error) {
         return <div>Error</div>
@@ -19,7 +15,7 @@ const Center = () => {
     return (
         data &&
         <>
-            <div className='flex flex-[1] flex-col gap-6 bg-white lg:bg-opacity-[.95] lg:backdrop-blur-2xl'>
+            <div className='flex flex-[1] flex-col gap-6 h-full bg-white lg:bg-opacity-[.95] lg:backdrop-blur-2xl'>
                 <SearchBox heading="Your Tasks" />
                 {data.payload.length !== 0 ?
                     <>

@@ -30,7 +30,7 @@ const ChatBody = () => {
         const channel = pusher.subscribe('messages');
         channel.bind('inserted', (msg) => {
             // alert(JSON.stringify(msg))
-            console.log(typeof msg,msg)
+            console.log(typeof msg, msg)
             // data.push(newMsg);
             // console.log('appended',data)
         });
@@ -41,11 +41,20 @@ const ChatBody = () => {
 
 
 
- 
+
     console.log(data)
 
     if (isLoading) {
-        return <div>Loading</div>
+        return (
+            <>
+                <div className='animate-pulse duration-75 flex-[1] px-8'>
+                    <div className={`float-right flex bg-white flex-col h-10 w-[200px] my-2 p-2 rounded-lg clear-both`}></div>
+                    <div className={`float-left flex bg-white flex-col h-10 w-[200px] my-2 p-2 rounded-lg clear-both`}></div>
+                    <div className={`float-left flex bg-white flex-col h-10 w-[200px] my-2 p-2 rounded-lg clear-both`}></div>
+                    <div className={`float-right flex bg-white flex-col h-10 w-[200px] my-2 p-2 rounded-lg clear-both`}></div>
+                </div>
+            </>
+        )
     }
     if (error) {
         return <div>error</div>

@@ -1,8 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { getTaskRQ } from '../../hooks';
-import { userData } from '../../Atom/userState';
-import {useRecoilValue } from 'recoil';
 import CalendarWidget from '../UI/CalendarWidget';
 import { getUser } from '../../hooks';
 // import { getQueryClient} from 'react-query';
@@ -20,7 +18,7 @@ const RightSide = () => {
   return (
     data && 
     <>
-      <div className='bg-white bg-opactiy-80 backdrop-blur-lg lg:w-[320px] border-l-[1.1px] border-gray-200 px-6 flex flex-col gap-5 md:py-00 '>
+      <div className='bg-white bg-opactiy-80 backdrop-blur-lg lg:w-[320px] xl:border-l-[1.1px] -mt-1 lg:mt-0 border-gray-200 px-6 flex flex-col lg:gap-5 md:py-00 '>
        
        <div className='w-full mx-auto py-[.9569rem] flex justify-between border-b-[1.1px] border-gray-200'>
           <div className='flex gap-4'>

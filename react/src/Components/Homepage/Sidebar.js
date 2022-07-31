@@ -26,7 +26,7 @@ const Sidebar = () => {
             <div className='flex '><MdSpeakerNotes className='text-4xl text-primary cursor-pointer m-3' /></div>
             
             
-            <nav className='flex gap-3  text-[1.1rem] text-gray-400 lg:gap-2 group lg:flex-col items-center justify-start lg:mt-[2rem]'>
+            <nav className='flex xl:gap-3 gap-6  text-[1.1rem] text-gray-400 lg:gap-2 group lg:flex-col items-center justify-start lg:mt-[2rem]'>
             <Link to = "/"><div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/"?"active":""} grid place-items-center`}><BsFillGrid1X2Fill /></div></Link>
             <Link to = "/cal"><div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/cal"?"active":""} grid place-items-center`}><BsFillCalendarEventFill /></div></Link>
             <Link to = "/chat"><div className={`xl:w-[90px] xl:h-[50px] navlink ${location.pathname==="/chat"?"active":""} grid place-items-center`}><BsFillChatFill /></div></Link>

@@ -28,9 +28,15 @@ const Home = () => {
   
 
   const {data,isLoading,error} = useQuery('user',getUser,{
-    onSuccess:()=>navigate('/')
+    onSuccess:()=>{
+      navigate('/')
+    },
+    refetchIntervalInBackground:false,
+    refetchOnMount:false,
+    refetchOnReconnect:false,
+    refetchOnWindowFocus:false
   });
-
+  
   if(isLoading){
     return<div>Loading</div>
   }
@@ -43,7 +49,7 @@ const Home = () => {
 
   return (
     <>
-      <div className='flex flex-col lg:flex-row relative max-w-[1200px] lg:w-[1380px] flex-wrap overflow-hidden border-[.5px] border-gray-200 drop-shadow-2xl rounded-[20px]  lg:h-[95vh] '>
+      <div className='flex flex-col lg:flex-row relative lg:max-w-[1200px] lg:w-[1380px] w-full min-h-[100vh] xl:min-h-0 flex-wrap overflow-hidden border-[.5px] border-gray-200 drop-shadow-2xl lg:rounded-[20px]  lg:h-[95vh] '>
         <Loading showLoading={showLoading} />
         <Addnote />
         <UpdateNote />

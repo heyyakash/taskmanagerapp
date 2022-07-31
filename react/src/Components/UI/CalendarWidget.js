@@ -29,7 +29,7 @@ const CalendarWidget = () => {
 
     return (
         heading &&
-        <div className='border-b-[1.1px] border-gray-200 pb-4'>
+        <div className='border-b-[1.1px] hidden xl:block border-gray-200 pb-4'>
             <h1 className='text-lg font-bold pl-2 tracking-wide'>{heading}</h1>
             <div>
                 <div className='flex gap-2 mt-4 rounded-xl overflow-hidden'>
@@ -46,7 +46,7 @@ const CalendarWidget = () => {
                 {week.map((day) => {
                     return (
                     <>
-                    <div key = {day.format("D")} className={`day  ${day.isBefore(moment(),'day')?"text-gray-500":day.isSame(moment(),'day')?"text-white rounded-lg bg-primary":""} font-bold text-sm`}>{day.format('D')}</div>
+                    <div key = {day.format("D").toString()} className={`day  ${day.isBefore(moment(),'day')?"text-gray-500":day.isSame(moment(),'day')?"text-white rounded-lg bg-primary":""} font-bold text-sm`}>{day.format('D')}</div>
                     </>
                 )
                 })}

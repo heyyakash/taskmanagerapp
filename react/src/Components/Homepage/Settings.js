@@ -27,12 +27,22 @@ const Settings = () => {
     })
   }
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    deleteMutation.mutate(user.payload._id,{
+      onSuccess:()=>{
+        localStorage.removeItem('token');
+        navigate('/login');
+      }
+    })
+  }
+
   const [firstname,setFirstname] = useState(user.payload.firstname)
   const [lastname,setLastname] = useState(user.payload.lastname)
   const [email,setEmail] = useState(user.payload.email || "")
   const [username,setUserName] = useState(user.payload.username)
   return (
-    <div className='flex flex-[1] flex-col gap-6 bg-white/95 backdrop-blur-xl'>
+    <div className='flex flex-[1] pb-8 flex-col gap-6 bg-white/95 backdrop-blur-xl'>
       <SearchBox heading="Settings" />
       <h1 className='text-gray-700 text-4xl font-[600] px-8 mt-2'>Update Settings</h1>
       <form className='px-8 mt-2'>
@@ -55,7 +65,7 @@ const Settings = () => {
           </div>
         </div>
         <button onClick={(e)=>handleUpdate(e)} className='p-2 bg-primary text-white hover:bg-white hover:text-primary transition-all duration-100 rounded-lg' type = "submit">Update</button>
-        <button className='ml-3 p-2 bg-red-500 text-white hover:bg-white hover:text-red-500 transition-all duration-100 rounded-lg'>Delete Account</button>
+        <button onClick = {(e)=>handleDelete(e)} className='ml-3 p-2 bg-red-500 text-white hover:bg-white hover:text-red-500 transition-all duration-100 rounded-lg'>Delete Account</button>
       </form>
     </div>
   )
