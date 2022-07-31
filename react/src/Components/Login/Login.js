@@ -51,14 +51,14 @@ const Login = () => {
     return (
         <div className='w-[100%] h-[100vh] flex justify-center items-center'>
             <Alert msg={msg} success={success} show={show} />
-            <div className='p-8 bg-white/50 h-full backdrop-blur-md justify-center items-center flex flex-col lg:flex-row gap-2 rounded-xl'>
+            <div className='p-8 bg-white/50 h-full lg:h-auto lg:bg-white backdrop-blur-md justify-center items-center flex flex-col lg:flex-row gap-2 rounded-xl'>
                 <div className="p-2 max-w-[500px]">
                     <h2 className="text-2xl text-primary">Task Manager App</h2>
                     <p className="my-2 lg:flex">
                         Task Manager is Team management tool where tasks can be assigned and updated. Team members can also use this as a personal task management tool. 
                     </p>
                 </div>
-                <div className='bg-white drop-shadow-xl rounded-md p-[2rem] justify-center w-[300px]'>
+                <div className='bg-white drop-shadow-xl lg:drop-shadow-none  rounded-md p-[2rem] justify-center w-[300px]'>
                     <form className='flex flex-col justify-center items-start gap-3 '>
                         <h2 className = 'text-xl'>Sign In</h2>
                         Username: <input type="text" value={uname} onChange={(e) => setUname(e.target.value)} className="bg-secondary w-full h-[30px] outline-primary px-2" />
